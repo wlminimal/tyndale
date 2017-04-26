@@ -1,0 +1,16 @@
+.post-scroller-wrap {
+    padding: 30px;
+    background: #ffffff;
+    background: rgba(255,255,255,.9);
+}
+
+.tp-caption.color-full {
+    position: absolute;
+    right: 0;
+    bottom: 110px;
+    width: 380px;
+    background-color: rgba(255,255,255,0.8);
+    white-space: normal;
+    padding: 29px 40px 33px;
+    z-index: 9999;
+}

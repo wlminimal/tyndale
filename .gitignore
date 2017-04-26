@@ -64,4 +64,4 @@ media/
 
 
 staticfiles/
-dev.py
+tyndale/settings/dev.py

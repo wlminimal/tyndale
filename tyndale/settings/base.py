@@ -200,6 +200,5 @@ AUTOSLUG_SLUGIFY_FUNCTION = 'slugify.slugify'
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#site-id
 SITE_ID = 1
-WAGTAIL_SITE_NAME = 'We like minimal'
 WAGTAIL_PASSWORD_MANAGEMENT_ENABLED = True
 WAGTAIL_PASSWORD_RESET_ENABLED = True
