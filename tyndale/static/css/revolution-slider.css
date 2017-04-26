@@ -1097,7 +1097,7 @@ img.tp-slider-alternative-image	{	width:100%; height:auto;}
 
 											}
 
-.tp-simpleresponsive  .button.big			{	color:#fff; text-shadow:0px 1px 1px rgba(0, 0, 0, 0.6); font-weight:bold; padding:9px 20px; font-size:19px;  line-height:57px !important; /* background:url(../../img/revolution-slider/gradient/g40.png) repeat-x top */}
+.tp-simpleresponsive  .button.big			{	color:#fff; text-shadow:0px 1px 1px rgba(0, 0, 0, 0.6); font-weight:bold; padding:9px 20px; font-size:19px;  line-height:57px !important; }
 
 
 .tp-simpleresponsive  .purchase:hover,
@@ -1233,11 +1233,7 @@ img.tp-slider-alternative-image	{	width:100%; height:auto;}
         -webkit-user-select: none;
         -o-user-select: none;
 	}
-/*
-.tp-bannershadow.tp-shadow1 {	background:url(../../assets/revolution-slider/shadow1.png) no-repeat; background-size:100% 100%; width:890px; height:60px; bottom:-60px}
-.tp-bannershadow.tp-shadow2 {	background:url(../../assets/revolution-slider/shadow2.png) no-repeat; background-size:100% 100%; width:890px; height:60px;bottom:-60px}
-.tp-bannershadow.tp-shadow3 {	background:url(../../assets/revolution-slider/shadow3.png) no-repeat; background-size:100% 100%; width:890px; height:60px;bottom:-60px}
-*/
+
 
 /********************************
 	-	FULLSCREEN VIDEO	-
@@ -1359,13 +1355,7 @@ img.tp-slider-alternative-image	{	width:100%; height:auto;}
 /********************************
 	-	DOTTED OVERLAYS	-
 *********************************/
-/*
-.tp-dottedoverlay						{	background-repeat:repeat;width:100%;height:100%;position:absolute;top:0px;left:0px;z-index:4}
-.tp-dottedoverlay.twoxtwo				{	background:url(../../assets/revolution-slider/gridtile.png)}
-.tp-dottedoverlay.twoxtwowhite			{	background:url(../../assets/revolution-slider/gridtile_white.png)}
-.tp-dottedoverlay.threexthree			{	background:url(../../assets/revolution-slider/gridtile_3x3.png)}
-.tp-dottedoverlay.threexthreewhite		{	background:url(../../assets/revolution-slider/gridtile_3x3_white.png)}
-*/
+
 /********************************
 	-	DOTTED OVERLAYS ENDS	-
 *********************************/
