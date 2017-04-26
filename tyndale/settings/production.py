@@ -159,6 +159,9 @@ RAVEN_CONFIG = {
     'DSN': SENTRY_DSN
 }
 
+# Custom Admin URL, use {% url 'admin:index' %}
+ADMIN_URL = env('DJANGO_ADMIN_URL')
+
 
 try:
     from .local import *
