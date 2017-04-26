@@ -87,6 +87,21 @@ ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS', default=['www.welikeminimal.com
 # ------------------------
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+# EMAIL
+# ------------------------------------------------------------------------------
+DEFAULT_FROM_EMAIL = env('DJANGO_DEFAULT_FROM_EMAIL',
+                         default='wlm <noreply@welikeminimal.com>')
+EMAIL_SUBJECT_PREFIX = env('DJANGO_EMAIL_SUBJECT_PREFIX', default='[Tyndale]')
+SERVER_EMAIL = env('DJANGO_SERVER_EMAIL', default=DEFAULT_FROM_EMAIL)
+
+# Anymail with Mailgun
+INSTALLED_APPS += ['anymail', ]
+ANYMAIL = {
+    'MAILGUN_API_KEY': env('MAILGUN_API_KEY'),
+    'MAILGUN_SENDER_DOMAIN': env('MAILGUN_DOMAIN')
+}
+EMAIL_BACKEND = 'anymail.backends.mailgun.MailgunBackend'
+
 
 
 try:
