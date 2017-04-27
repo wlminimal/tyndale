@@ -14,3 +14,51 @@
     padding: 29px 40px 33px;
     z-index: 9999;
 }
+
+.parallax1 {
+    background-color: #F3F3F3;
+    background-image: none;
+}
+
+.flat-university .post .title {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 40px;
+    color: #222222;
+    margin-bottom: 80px;
+    line-height: 1.5;
+}
+
+
+.flat-university .box-university .title-box h4 {
+    color: #222;
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.flat-university .box-university .title-box p {
+    color: #222;
+    font-size: 14px;
+    text-align: center;
+}
+
+.read-more-button {
+    margin-top: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    padding: 10px 20px;
+    transition: all .2s;
+    border-radius: 3px;
+    border: solid 2px #fff;
+    background-color: #179bd7;
+    color: #fff;
+    text-align: center;
+}
+
+.read-more-button:hover {
+    color: #343434;
+    background-color: #fff;
+    border-color: #333;
+}
+

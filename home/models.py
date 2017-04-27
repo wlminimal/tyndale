@@ -91,6 +91,53 @@ class HomePage(Page):
     state_faith_title = models.TextField(default="Statement of Faith")
     state_faith_description = RichTextField(default="Description of Faith")
 
+    our_mission_title = models.TextField(default="Preparing students to serve Christ and his church through biblical, experiential, and practical ministry")
+
+    president_image = models.ForeignKey(
+        'wagtailimages.Image',
+        blank=False,
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        help_text="342 x 478 pixels"
+    )
+    president_title = models.TextField(default="President's Welcome")
+    president_message = RichTextField(default="Description")
+
+    chairman_image = models.ForeignKey(
+        'wagtailimages.Image',
+        blank=False,
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        help_text="342 x 478 pixels"
+    )
+    chairman_title = models.TextField(default="Chairman's Welcome")
+    chairman_message = RichTextField(default="Message")
+
+    tyndale_image = models.ForeignKey(
+        'wagtailimages.Image',
+        blank=False,
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        help_text="342 x 478 pixels"
+    )
+    tyndale_title = models.TextField(default="Learn about Tyndale")
+    tyndale_message = RichTextField(default="Message")
+
+    yala_image = models.ForeignKey(
+        'wagtailimages.Image',
+        blank=False,
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        help_text="342 x 478 pixels"
+    )
+    yala_title = models.TextField(default="Learn about Yala")
+    yala_message = RichTextField(default="message")
+
+
     content_panels = Page.content_panels + [
         ImageChooserPanel('slider_image_1'),
         FieldPanel('slider_banner_title_1'),
@@ -122,4 +169,18 @@ class HomePage(Page):
         FieldPanel('state_mission_description'),
         FieldPanel('state_faith_title'),
         FieldPanel('state_faith_description'),
+
+        FieldPanel('our_mission_title'),
+        ImageChooserPanel('president_image'),
+        FieldPanel('president_title'),
+        FieldPanel('president_message'),
+        ImageChooserPanel('chairman_image'),
+        FieldPanel('chairman_title'),
+        FieldPanel('chairman_message'),
+        ImageChooserPanel('tyndale_image'),
+        FieldPanel('tyndale_title'),
+        FieldPanel('tyndale_message'),
+        ImageChooserPanel('yala_image'),
+        FieldPanel('yala_title'),
+        FieldPanel('yala_message'),
     ]
