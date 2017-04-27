@@ -29,3 +29,12 @@ def display_footer(context, calling_page=None):
     return {
         "calling_page": calling_page,
     }
+
+
+@register.inclusion_tag("home/inclusion/breadcrumbs.html", takes_context=True)
+def display_breadcrumbs(context, calling_page=None):
+    ancestors = calling_page.get_ancestors().exclude(title='Root')
+    return {
+        "ancestors": ancestors,
+        "current_page": calling_page,
+    }

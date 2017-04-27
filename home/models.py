@@ -137,7 +137,6 @@ class HomePage(Page):
     yala_title = models.TextField(default="Learn about Yala")
     yala_message = RichTextField(default="message")
 
-
     content_panels = Page.content_panels + [
         ImageChooserPanel('slider_image_1'),
         FieldPanel('slider_banner_title_1'),
@@ -184,3 +183,63 @@ class HomePage(Page):
         FieldPanel('yala_title'),
         FieldPanel('yala_message'),
     ]
+
+
+class AboutPage(Page):
+    pass
+
+
+class PresidentWelcomePage(Page):
+    pass
+
+
+class ChairmanWelcomePage(Page):
+    pass
+
+
+class StateOfFaithPage(Page):
+    pass
+
+
+class StateOfMissionPage(Page):
+    pass
+
+
+class AdminStaffPage(Page):
+    pass
+
+
+class AcademicsPage(Page):
+    pass
+
+
+class CourseListPage(Page):
+    pass
+
+
+class CourseDetailPage(Page):
+    pass
+
+
+class AcademicProgramListPage(Page):
+    pass
+
+
+class AcademicProgramDetailPage(Page):
+    pass
+
+
+class FacultyPage(Page):
+    pass
+
+
+class AdmissionPage(Page):
+    pass
+
+
+class TuitionInfoPage(Page):
+    pass
+
+
+class ContactPage(Page):
+    pass
