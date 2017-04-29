@@ -62,3 +62,20 @@
     border-color: #333;
 }
 
+.blog-single .post .entry-box {
+    margin-bottom: 80px;
+}
+
+.blog-single .post .post-content .title {
+    font-size: 24px;
+    color: #343434;
+    margin-bottom: 60px;
+}
+
+.contact-title {
+    font-size: 36px;
+}
+
+.errorlist li {
+    color: darkred;
+}

@@ -1,5 +1,52 @@
-{% extends "base.html" %}
+{% extends "base-column.html" %}
+{% load staticfiles i18n wagtailcore_tags wagtailimages_tags tyndale_tags %}
 
-{% block content %}
-
+{% block body_class %}{% endblock %}
+{% block section-name %}
+main-content course-single
 {% endblock %}
+
+{% block div-name %}
+content-course
+{% endblock %}
+
+    {% block column-9-content %}
+        <article class="post-course">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="item-thumbnail">
+                        {% image page.academic_image width-265 as image %}
+                        <img src="{{ image.url }}" alt="image">
+                    </div>
+
+                    <div class="course-description">
+                        <p class="course-text">{{ page.academic_name }}</p>
+
+                        <div class="course-meta">START:
+                        <div class="course-start">{{ page.start_date }}</div>DURATION:
+                        <div class="course-start">{{ page.duration }}</div>
+                        </div>
+
+                        <div class="course-action">
+                            <div class="element-pad">
+                                <a href="#" class="flat-button">ENROLL NOW</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-8">
+                    <div class="content-pad single-course-detail">
+                        <div class="course-detail">
+                            <div class="content-content">
+                                <div class="content-dropcap">
+                                {{ page.academic_description | richtext }}
+                                </div>
+
+                            </div><!--/content-content-->
+                        </div><!--/course-detail-->
+                    </div><!--/single-content-detail-->
+                </div>
+            </div>
+        </article>
+    {% endblock %}

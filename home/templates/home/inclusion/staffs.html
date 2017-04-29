@@ -1,0 +1,20 @@
+{% load tyndale_tags wagtailcore_tags wagtailimages_tags staticfiles %}
+
+{% for staff in staffs %}
+<div class="item">
+    <div class="thumb-item">
+        <div class="item-thumbnail">
+            {% image staff.profile_image width-360 as profile_image %}
+            <img src="{{ profile_image.url }}" alt="image">
+        </div><!-- /item-thumbnail -->
+
+        <div class="item-content">
+            <h3 class="item-title">
+                {{ staff.name }}
+            </h3>
+            <h4 class="small-text">{{ staff.position }}</h4>
+        </div><!-- /item-content -->
+    </div><!-- /thumb-item -->
+</div><!-- /item -->
+{% endfor %}
+

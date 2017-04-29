@@ -1,4 +1,5 @@
 from django import template
+from home.models import *
 
 
 register = template.Library()
@@ -38,3 +39,69 @@ def display_breadcrumbs(context, calling_page=None):
         "ancestors": ancestors,
         "current_page": calling_page,
     }
+
+
+@register.inclusion_tag("home/inclusion/sidemenu.html", takes_context=True)
+def display_sidemenu(context, calling_page=None):
+    current_page = context['self']
+    has_children = current_page.get_children().live().in_menu().exists()
+    menuitems_children = current_page.get_children().live().in_menu()
+
+    ancestor = current_page.get_ancestors().last()
+    if ancestor is not None:
+        ancestor_children_has_children = ancestor.get_children().live().in_menu().exists()
+        if ancestor_children_has_children:
+            ancestor_children = ancestor.get_children().live().in_menu()
+        else:
+            ancestor_children = ()
+    else:
+        ancestor_children_has_children = False
+        ancestor_children = ()
+
+    return {
+        "ancestor": ancestor,
+        "ancestor_children_has_children": ancestor_children_has_children,
+        "ancestor_children": ancestor_children,
+        "current_page": current_page,
+        "children": menuitems_children,
+        "has_children": has_children,
+        "request": context['request']
+    }
+
+
+@register.inclusion_tag("home/inclusion/staffs.html", takes_context=True)
+def display_staffs(context):
+    return {
+        "staffs": Staff.objects.all().order_by('order_number'),
+        'request': context['request'],
+    }
+
+
+@register.inclusion_tag("home/inclusion/academic_program_list.html", takes_context=True)
+def display_academic_list(context):
+    current_page = context['self']
+    children = current_page.get_children().live()
+
+    # TODO
+    # order by number
+
+    return {
+        "children": children,
+        "request": context['request'],
+    }
+
+
+@register.inclusion_tag("home/inclusion/faculty.html", takes_context=True)
+def display_faculty(context):
+    current_page = context['self']
+    children = current_page.get_children().live()
+
+    return {
+        "children": children,
+        "request": context['request'],
+    }
+
+
+
+
+

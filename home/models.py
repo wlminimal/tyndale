@@ -13,6 +13,24 @@ from wagtail.wagtailforms.edit_handlers import FormSubmissionsPanel
 from modelcluster.fields import ParentalKey
 
 
+@register_snippet
+class Staff(models.Model):
+    profile_image = models.ForeignKey(
+        'wagtailimages.Image',
+        blank=False,
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        help_text="360x360 pixels"
+    )
+    name = models.CharField(max_length=100, default="Name")
+    position = models.CharField(max_length=100, default="Position")
+    order_number = models.IntegerField(default=10, blank=False)
+
+    def __str__(self):
+        return self.name
+
+
 class HomePage(Page):
     overlay_banner_title_1 = models.TextField(default="Your Career starts here")
     overlay_banner_description_1 = RichTextField(default="Description")
@@ -186,35 +204,153 @@ class HomePage(Page):
 
 
 class AboutPage(Page):
-    pass
+    main_image = models.ForeignKey(
+        'wagtailimages.Image',
+        blank=False,
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        help_text="1500x650 pixels"
+    )
+    main_title = models.TextField(default="About Tyndale International University")
+    main_description = RichTextField(default="Description")
+
+    content_panels = Page.content_panels + [
+        ImageChooserPanel('main_image'),
+        FieldPanel('main_title'),
+        FieldPanel('main_description'),
+    ]
 
 
 class PresidentWelcomePage(Page):
-    pass
+    profile_image = models.ForeignKey(
+        'wagtailimages.Image',
+        blank=False,
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        help_text="263x263 pixels"
+    )
+
+    name = models.CharField(max_length=100, default="Joen Doe")
+    spec = models.CharField(max_length=100, default="Ph.D", help_text="Ph.D, D.D")
+    position = models.CharField(max_length=100, default="President", help_text="President")
+    message = RichTextField(default="Message")
+
+    content_panels = Page.content_panels + [
+        ImageChooserPanel('profile_image'),
+        FieldPanel('name'),
+        FieldPanel('spec'),
+        FieldPanel('position'),
+        FieldPanel('message'),
+    ]
 
 
 class ChairmanWelcomePage(Page):
-    pass
+    profile_image = models.ForeignKey(
+        'wagtailimages.Image',
+        blank=False,
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        help_text="263x263 pixels"
+    )
+
+    name = models.CharField(max_length=100, default="Joen Doe")
+    spec = models.CharField(max_length=100, default="Ph.D", help_text="Ph.D, D.D")
+    position = models.CharField(max_length=100, default="President", help_text="President")
+    message = RichTextField(default="Message")
+
+    content_panels = Page.content_panels + [
+        ImageChooserPanel('profile_image'),
+        FieldPanel('name'),
+        FieldPanel('spec'),
+        FieldPanel('position'),
+        FieldPanel('message'),
+    ]
 
 
 class StateOfFaithPage(Page):
-    pass
+    main_image = models.ForeignKey(
+        'wagtailimages.Image',
+        blank=False,
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        help_text="1500x650 pixels"
+    )
+    main_title = models.TextField(default="About Tyndale International University")
+    main_description = RichTextField(default="Description")
+
+    content_panels = Page.content_panels + [
+        ImageChooserPanel('main_image'),
+        FieldPanel('main_title'),
+        FieldPanel('main_description'),
+    ]
 
 
 class StateOfMissionPage(Page):
-    pass
+    main_image = models.ForeignKey(
+        'wagtailimages.Image',
+        blank=False,
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        help_text="1500x650 pixels"
+    )
+    main_title = models.TextField(default="About Tyndale International University")
+    main_description = RichTextField(default="Description")
+
+    content_panels = Page.content_panels + [
+        ImageChooserPanel('main_image'),
+        FieldPanel('main_title'),
+        FieldPanel('main_description'),
+    ]
 
 
 class AdminStaffPage(Page):
-    pass
+
+    content_panels = Page.content_panels + [
+
+    ]
 
 
 class AcademicsPage(Page):
-    pass
+    main_image = models.ForeignKey(
+        'wagtailimages.Image',
+        blank=False,
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        help_text="1500x1000 pixels"
+    )
+    main_title = models.TextField(default="About Tyndale International University")
+    main_description = RichTextField(default="Description")
+
+    content_panels = Page.content_panels + [
+        ImageChooserPanel('main_image'),
+        FieldPanel('main_title'),
+        FieldPanel('main_description'),
+    ]
 
 
 class CourseListPage(Page):
-    pass
+    main_image = models.ForeignKey(
+        'wagtailimages.Image',
+        blank=False,
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        help_text="1500x1000 pixels"
+    )
+    main_title = models.TextField(default="About Tyndale International University")
+    main_description = RichTextField(default="Description")
+
+    content_panels = Page.content_panels + [
+        ImageChooserPanel('main_image'),
+        FieldPanel('main_title'),
+        FieldPanel('main_description'),
+    ]
 
 
 class CourseDetailPage(Page):
@@ -226,20 +362,142 @@ class AcademicProgramListPage(Page):
 
 
 class AcademicProgramDetailPage(Page):
-    pass
+    academic_image = models.ForeignKey(
+        'wagtailimages.Image',
+        blank=False,
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        help_text="265x265 pixels"
+    )
+
+    academic_name = models.TextField(default="Academic Program Name")
+    start_date = models.CharField(max_length=100, default="March 11, 2017")
+    duration = models.CharField(max_length=50, default="8 weeks")
+    academic_description = RichTextField(default="Academic Program Description")
+    order_number = models.IntegerField(default=10)
+
+    content_panels = Page.content_panels + [
+        FieldPanel('academic_name'),
+        ImageChooserPanel('academic_image'),
+        FieldPanel('start_date'),
+        FieldPanel('duration'),
+        FieldPanel('academic_description'),
+        FieldPanel('order_number'),
+
+    ]
 
 
 class FacultyPage(Page):
     pass
 
 
+class FacultyDetailPage(Page):
+    profile_image = models.ForeignKey(
+        'wagtailimages.Image',
+        blank=False,
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        help_text="360x360 pixels"
+    )
+    name = models.CharField(max_length=100, default="Name")
+    spec = RichTextField(default="Spec of professor")
+    class_name = models.TextField(default="class name")
+    order_number = models.IntegerField(default=10, blank=False)
+
+    content_panels = Page.content_panels + [
+        ImageChooserPanel('profile_image'),
+        FieldPanel('name'),
+        FieldPanel('spec'),
+        FieldPanel('class_name'),
+        FieldPanel('order_number'),
+
+    ]
+
+
 class AdmissionPage(Page):
-    pass
+    main_image = models.ForeignKey(
+        'wagtailimages.Image',
+        blank=False,
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        help_text="1500x1000 pixels"
+    )
+    main_title = models.TextField(default="About Tyndale International University")
+    main_description = RichTextField(default="Description")
+
+    content_panels = Page.content_panels + [
+        ImageChooserPanel('main_image'),
+        FieldPanel('main_title'),
+        FieldPanel('main_description'),
+    ]
 
 
 class TuitionInfoPage(Page):
-    pass
+    main_image = models.ForeignKey(
+        'wagtailimages.Image',
+        blank=False,
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        help_text="1500x1000 pixels"
+    )
+    main_title = models.TextField(default="About Tyndale International University")
+    main_description = RichTextField(default="Description")
+
+    content_panels = Page.content_panels + [
+        ImageChooserPanel('main_image'),
+        FieldPanel('main_title'),
+        FieldPanel('main_description'),
+    ]
 
 
-class ContactPage(Page):
-    pass
+class FormField(AbstractFormField):
+    page = ParentalKey('ContactPage', related_name='form_fields')
+
+
+class ContactPage(AbstractEmailForm):
+    thank_you_text = RichTextField(default="Thank you for contacting us. We will get back to you soon.")
+    content_panels = AbstractEmailForm.content_panels + [
+        FormSubmissionsPanel(),
+        InlinePanel('form_fields', label='Contact Form Fields'),
+        FieldPanel('thank_you_text', classname='full'),
+        MultiFieldPanel([
+            FieldRowPanel([
+                FieldPanel('from_address', classname='col6'),
+                FieldPanel('to_address', classname='col6'),
+            ]),
+            FieldPanel('subject'),
+        ], 'Email'),
+    ]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

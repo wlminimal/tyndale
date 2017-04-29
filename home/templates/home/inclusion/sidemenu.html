@@ -1,0 +1,31 @@
+{% load wagtailcore_tags tyndale_tags %}
+<div class="widget widget-nav-menu">
+    <div class=" widget-inner">
+    {% if has_children %}
+        <h2 class="widget-title maincolor2"><a href="{% pageurl current_page %}">{{ current_page.title }}</a></h2>
+        <div class="menu-main-navigation-container">
+            <ul id="menu-main-navigation-1" class="menu">
+                {% for child in children %}
+                   <li class="menu-item">
+                      <a href="{% pageurl child %}">{{ child.title }}</a>
+                   </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% else %}
+        <h2 class="widget-title maincolor2"><a href="{% pageurl ancestor %}">{{ ancestor.title }}</a></h2>
+
+        <div class="menu-main-navigation-container">
+            <ul id="menu-main-navigation-1" class="menu">
+                {% if ancestor_children_has_children %}
+                    {% for child in ancestor_children %}
+                        <li class="menu-item">
+                          <a href="{% pageurl child %}">{{ child.title }}</a>
+                        </li>
+                    {% endfor %}
+                {% endif %}
+            </ul>
+        </div>
+    {% endif %}
+    </div>
+</div>

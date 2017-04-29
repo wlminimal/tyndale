@@ -1,5 +1,15 @@
-{% extends "base.html" %}
+{% extends "base-column.html" %}
+{% load staticfiles i18n wagtailcore_tags wagtailimages_tags tyndale_tags %}
 
-{% block content %}
+{% block body_class %}{% endblock %}
+{% block section-name %}
+flat-row padding-v1
+{% endblock %}
+
+{% block div-name %}
 
 {% endblock %}
+
+    {% block column-9-content %}
+        {% display_academic_list %}
+    {% endblock %}

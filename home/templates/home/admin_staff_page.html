@@ -1,5 +1,19 @@
-{% extends "base.html" %}
+{% extends "base-column.html" %}
+{% load tyndale_tags %}
+{% block column-9-content %}
+    <div class="project-listing">
 
-{% block content %}
+
+        <div class="project-portfolio v1">
+            {% display_staffs %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block latest_post %}
+
+{% endblock %}
+
+{% block course_list %}
 
 {% endblock %}

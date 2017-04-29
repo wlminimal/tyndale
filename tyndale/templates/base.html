@@ -39,12 +39,15 @@
 
         <!-- Favicon and touch icons  -->
         <link href="{% static 'icon/TYNDALE_32x32px.png' %}" rel="apple-touch-icon-precomposed">
-        <link href="#" rel="shortcut icon">
+        <link href="{% static 'icon/TYNDALE_32x32px.png' %}" rel="shortcut icon">
 
         <link rel="stylesheet" type="text/css" href="{% static 'css/tyndale.css' %}">
 
         {% block extra_css %}
             {# Override this in templates to add extra stylesheets #}
+        {% endblock %}
+        {% block googlemap %}
+
         {% endblock %}
     </head>
 

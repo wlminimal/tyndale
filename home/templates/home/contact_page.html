@@ -1,5 +1,40 @@
 {% extends "base.html" %}
+{% load staticfiles i18n wagtailcore_tags wagtailimages_tags tyndale_tags %}
+{% block googlemap %}
 
+{% endblock %}
 {% block content %}
+    {% display_breadcrumbs calling_page=self %}
+    <section class="main-content contact-posts">
+        <div class="container">
+            <div class="row">
+                <div class="post-contact">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="contact-form">
+                                <div class="line-box"></div>
+                                <form action="{% pageurl self %}" method="post" id="contactform" class="comment-form" novalidate="">
+                                    {% csrf_token %}
+                                    {{ form.as_p }}
+                                    <div class="submit-wrap">
+                                        <button class="flat-button button-style style-v1">Send <i class="fa fa-angle-right"></i></button>
+                                    </div>
+                                </form>
+                            </div><!-- contact-form -->
+                        </div><!-- col-md-6 -->
+
+                        <div class="col-md-6">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="mapouter"><div class="gmap_canvas"><iframe width="600" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=4270 West 6th Street, Los Angeles, CA, United States, &t=&z=14&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><script src="https://www.embedgooglemap.net/mapscript.js"></script><br>embed google map with <a href="https://www.embedgooglemap.net">embedgooglemap.net</a></div><style>.mapouter{overflow:hidden;height:500px;width:600px;margin-top:100px;}.gmap_canvas {background:none!important;height:500px;width:600px;}</style></div>
+                                   <!-- <div id="map" style="width: 100%; height: 500px; "></div> -->
+                                </div>
+                            </div><!-- /container-fluid -->
+                        </div>
+                    </div><!-- /row-->
+                </div>
+            </div>
+        </div>
+    </section>
 
 {% endblock %}

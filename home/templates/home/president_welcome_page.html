@@ -1,5 +1,42 @@
-{% extends "base.html" %}
+{% extends "base-column.html" %}
+{% load staticfiles i18n wagtailcore_tags wagtailimages_tags tyndale_tags %}
 
-{% block content %}
+{% block column-9-content %}
+    <div class="member-single-post">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="item-thumbnail">
+                    {% image page.profile_image width-263 as profile_image %}
+                    <img src="{{ profile_image.url }}" alt="image">
+                </div>
+            </div>
+
+            <div class="col-md-8">
+                <div class="content-pad">
+                    <div class="item-content">
+                        <h3 class="item-title">{{ page.name }}</h3>
+                        <h4 class="small-text">{{ page.spec }} - {{ page.position }}</h4>
+                        <div class="member-tax small-text">
+                            <p>member text</p>
+                            <p>member text</p>
+                        </div>
+                    </div>
+                </div><!--/content-pad-->
+            </div><!--/col-md-8-->
+        </div><!--/row-->
+    </div><!--/member-single-post-->
+
+    <div class="pure-content">
+        <div class="content-pad">
+            {{ page.message | richtext }}
+        </div>
+    </div>
+{% endblock %}
+
+{% block latest_post %}
+
+{% endblock %}
+
+{% block course_list %}
 
 {% endblock %}
