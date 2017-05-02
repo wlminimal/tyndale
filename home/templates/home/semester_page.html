@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load staticfiles wagtailimages_tags wagtailcore_tags tyndale_tags %}
+
+{% block content %}
+{% display_breadcrumbs calling_page=self %}
+    <section class="flat-row padding-small-v1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="project-listing">
+                            <div class="project-portfolio">
+                                {% for course in courses %}
+                                    {% with course=course.specific %}
+                                        <div class="item">
+                                            <div class="project-item">
+                                                <div class="item-thumbnail">
+                                                    <a href="{% pageurl course %}">
+                                                        {% image course.thumb_image width-550 %}
+                                                    </a>
+                                                    <div class="thumbnail-hoverlay main-color-1-bg"></div>
+                                                </div><!-- /item-thumbnail -->
+
+                                                <div class="project-item-content">
+                                                    <div class="project-item-title">
+                                                        <div class="project-item-title-inner">
+                                                            <h4 class="item-title"><a href="{% pageurl course %}">{{ course.course_name }}</a></h4>
+                                                        </div><!-- /project-item-title-inner -->
+                                                    </div><!-- /project-item-title -->
+
+                                                    <div class="project-item-excerpt">
+                                                        <div class="exerpt-text">{{ course.course_intro | richtext | truncatewords:20 }}</div>
+                                                    </div><!-- /project-item-excerpt -->
+                                                </div><!-- /project-item -->
+                                            </div><!-- /project-item -->
+                                        </div><!-- /item -->
+                                    {% endwith %}
+                                {% empty %}
+                                    <h1>No Courses</h1>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+{% endblock %}

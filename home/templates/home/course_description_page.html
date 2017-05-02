@@ -1,0 +1,31 @@
+{% extends "base-column.html" %}
+{% load staticfiles i18n wagtailcore_tags wagtailimages_tags tyndale_tags %}
+
+{% block body_class %}{% endblock %}
+
+
+    {% block column-9-content %}
+        <article class="post">
+            <div class="entry-wrapper">
+                <div class="entry-box">
+                    {% image page.main_image width-1500 as main_image %}
+                    <img src="{{ main_image.url }}" alt="images">
+                </div>
+
+                <div class="post-content">
+                    <h1 class="title">{{ page.main_title }}</h1>
+                    {{ page.main_description | richtext }}
+                </div>
+
+                <div class="content-pad">
+                    <div class="item-content">
+                        <div class="item-meta blog-item-meta">
+                            <span>By TIU Team<span class="sep">|</span> </span>
+                            <span>JUNE 3, 2015 <span class="sep">|</span> </span>
+                            <span><a href="#">{{ page.title }}</a></span> <span class="dot"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+    {% endblock %}

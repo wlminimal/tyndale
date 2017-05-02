@@ -102,6 +102,20 @@ def display_faculty(context):
     }
 
 
+@register.inclusion_tag("home/inclusion/semester.html", takes_context=True)
+def display_semester(context):
+    current_page = context['self']
+    return {
+        "children": current_page.get_children().live(),
+        "request": context['request'],
+    }
 
 
+@register.inclusion_tag("home/inclusion/course.html", takes_context=True)
+def display_course(context):
+    current_page = context['self']
+    return {
+        "children": current_page.get_children().live(),
+        "request": context['request'],
+    }
 

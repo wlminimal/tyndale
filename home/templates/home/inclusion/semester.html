@@ -1,0 +1,34 @@
+{% load staticfiles wagtailimages_tags wagtailcore_tags tyndale_tags %}
+
+{% for child in children %}
+    {% with child=child.specific %}
+        <div class="grid-item">
+            <div class="grid-item-inner">
+                <div class="event-item">
+                    <div class="event-thumbnail">
+                        <a href="{% pageurl child %}">
+                            {% image child.thumb_image width-554 as image %}
+                            <img src="{{ image.url }}" alt="">
+                        </a>
+                    </div><!-- /event-thumbnail -->
+
+                    <div class="date-block">
+                        <div class="month">{{ child.start_month }}</div>
+                        <div class="day">{{ child.start_date }}</div>
+                    </div><!-- /date-block -->
+
+                    <div class="event-overlay">
+                        <div class="cs-post-header">
+                            <div class="cs-category-links">
+                                <a class="overlay-top" href="{% pageurl child %}">
+                                    <h4>{{ child.semester_name }}</h4>
+                                </a>
+                            </div>
+                        </div>
+                    </div><!-- /event-overlay -->
+                </div>
+            </div>
+        </div>
+    {% endwith %}
+{% endfor %}
+

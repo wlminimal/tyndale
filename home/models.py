@@ -1,15 +1,18 @@
 from __future__ import absolute_import, unicode_literals
 
 from django.db import models
+import datetime
 
 from wagtail.wagtailcore.models import Page
 from wagtail.wagtailcore.fields import RichTextField
 from wagtail.wagtailadmin.edit_handlers import FieldPanel, FieldRowPanel, InlinePanel, MultiFieldPanel
-from wagtail.wagtailsnippets.edit_handlers import SnippetChooserPanel
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail.wagtailsnippets.models import register_snippet
 from wagtail.wagtailforms.models import AbstractEmailForm, AbstractFormField
 from wagtail.wagtailforms.edit_handlers import FormSubmissionsPanel
+from wagtail.wagtailcore.blocks import TextBlock, CharBlock, RichTextBlock, StreamBlock
+from wagtail.wagtailimages.blocks import ImageChooserBlock
+
 from modelcluster.fields import ParentalKey
 
 
@@ -334,7 +337,7 @@ class AcademicsPage(Page):
     ]
 
 
-class CourseListPage(Page):
+class CourseDescriptionPage(Page):
     main_image = models.ForeignKey(
         'wagtailimages.Image',
         blank=False,
@@ -353,8 +356,104 @@ class CourseListPage(Page):
     ]
 
 
+class SemesterIndexPage(Page):
+    semester_title = models.CharField(max_length=100, default="Choose Semester")
+    semester_subtitle = models.TextField(default="Here is our all course")
+
+    content_panels = Page.content_panels +[
+        FieldPanel('semester_title'),
+        FieldPanel('semester_subtitle'),
+    ]
+
+    subpage_types = ['home.SemesterPage']
+
+
+# display course list in semester
+class SemesterPage(Page):
+    semester_name = models.CharField(max_length=100, default="Choose Semester")
+    thumb_image = models.ForeignKey(
+        'wagtailimages.Image',
+        blank=False,
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        help_text="500 x 500 image for semester index page "
+    )
+    start_month = models.CharField(max_length=40, default="Mar")
+    start_date = models.CharField(max_length=40, default="27")
+
+    @property
+    def courses(self):
+        courses = CourseListPage.objects.live().descendant_of(self)
+        return courses
+
+    def get_context(self, request, *args, **kwargs):
+        courses = self.courses
+        context = super(SemesterPage, self).get_context(request, *args, **kwargs)
+        context['courses'] = courses
+
+        return context
+
+    content_panels = Page.content_panels + [
+        FieldPanel('semester_name'),
+        FieldPanel('start_month'),
+        FieldPanel('start_date'),
+        ImageChooserPanel('thumb_image'),
+
+    ]
+
+    subpage_types = ['home.CourseListPage']
+
+
+class CourseListPage(Page):
+    course_name = models.TextField(default="Course Name")
+    course_intro = RichTextField(default="Brief introduction of course")
+    thumb_image = models.ForeignKey(
+        'wagtailimages.Image',
+        blank=False,
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        help_text="500 x 500 image for course intro page "
+    )
+
+    @property
+    def course_url(self):
+        # Find closest descendent which is Course List
+        course = CourseListPage.objects.live().descendant_of(self)
+        return course
+
+    def get_context(self, request, *args, **kwargs):
+        course_url = self.course_url
+
+        context = super(CourseListPage, self).get_context(request, *args, **kwargs)
+        context['course_url'] = course_url
+
+        return context
+
+    content_panels = Page.content_panels + [
+        FieldPanel('course_name'),
+        FieldPanel('course_intro'),
+        ImageChooserPanel('thumb_image'),
+    ]
+
+    parent_page_types = ['home.SemesterPage']
+    subpage_types = ['home.CourseDetailPage']
+
+
 class CourseDetailPage(Page):
-    pass
+    course_name = models.TextField(default="Ancient Church History")
+    course_description = RichTextField(default="Description of course")
+    professor_name = models.CharField(max_length=70, default="Professor name")
+    video_url = models.URLField(default="http://www.youtube.com")
+    upload_date = models.DateField(default=datetime.date.today)
+
+    content_panels = Page.content_panels + [
+        FieldPanel('course_name'),
+        FieldPanel('course_description'),
+        FieldPanel('professor_name'),
+        FieldPanel('video_url'),
+    ]
 
 
 class AcademicProgramListPage(Page):
