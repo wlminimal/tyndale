@@ -1,12 +1,14 @@
 from __future__ import absolute_import, unicode_literals
 
 from django.db import models
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 import datetime
 
 from wagtail.wagtailcore.models import Page
 from wagtail.wagtailcore.fields import RichTextField
 from wagtail.wagtailadmin.edit_handlers import FieldPanel, FieldRowPanel, InlinePanel, MultiFieldPanel
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
+from wagtail.wagtailsnippets.edit_handlers import SnippetChooserPanel
 from wagtail.wagtailsnippets.models import register_snippet
 from wagtail.wagtailforms.models import AbstractEmailForm, AbstractFormField
 from wagtail.wagtailforms.edit_handlers import FormSubmissionsPanel
@@ -441,6 +443,36 @@ class CourseListPage(Page):
     subpage_types = ['home.CourseDetailPage']
 
 
+@register_snippet
+class Professor(models.Model):
+    profile_image = models.ForeignKey(
+        "wagtailimages.Image",
+        blank=True,
+        null= True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        help_text="Professor profile picture( square image recommended )"
+    )
+
+    name = models.CharField(max_length=100, default="Professor Name")
+    profile_page = models.ForeignKey(
+        "wagtailcore.Page",
+        null=True,
+        blank=True,
+        related_name='+'
+    )
+
+    @property
+    def link(self):
+        if self.profile_page:
+            return self.profile_page.url
+        else:
+            None
+
+    def __str__(self):
+        return self.name
+
+
 class CourseDetailPage(Page):
     course_name = models.TextField(default="Ancient Church History")
     course_description = RichTextField(default="Description of course")
@@ -448,12 +480,47 @@ class CourseDetailPage(Page):
     video_url = models.URLField(default="http://www.youtube.com")
     upload_date = models.DateField(default=datetime.date.today)
 
+    professor = models.ForeignKey(
+        "home.Professor",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
     content_panels = Page.content_panels + [
         FieldPanel('course_name'),
         FieldPanel('course_description'),
         FieldPanel('professor_name'),
         FieldPanel('video_url'),
+        SnippetChooserPanel('professor'),
     ]
+
+    # @property
+    # def courses(self):
+    #     courses = CourseDetailPage.objects.all()
+    #     courses = courses.order_by('-upload_date')
+    #
+    #     return courses
+    #
+    # def get_context(self, request, *args, **kwargs):
+    #
+    #     courses = self.courses
+    #
+    #     # Pagination
+    #     paginator = Paginator(courses, 1)
+    #     page = request.GET.get('page')
+    #
+    #     try:
+    #         courses = paginator.page(page)
+    #     except PageNotAnInteger:
+    #         courses = paginator.page(1)
+    #     except EmptyPage:
+    #         courses = paginator.page(paginator.num_pages)
+    #
+    #     context = super(CourseDetailPage, self).get_context(request, *args, **kwargs)
+    #     context['paged_courses'] = courses
+    #
+    #     return context
 
 
 class AcademicProgramListPage(Page):

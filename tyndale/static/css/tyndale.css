@@ -79,3 +79,24 @@
 .errorlist li {
     color: darkred;
 }
+
+.post-contact .contact-form input[type="text"], .post-contact .contact-form input[type="email"],
+.post-contact .contact-form input[type="password"] {
+    width: 100%;
+}
+
+.line-box {
+   border-bottom: 1px solid #eaeaea;
+    margin-bottom: 35px;
+    padding-top: 30px;
+}
+
+.login-title {
+    font-size: 36px;
+}
+
+.spacer-small {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+

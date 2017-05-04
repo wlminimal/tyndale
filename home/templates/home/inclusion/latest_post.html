@@ -1,0 +1,24 @@
+
+{% load wagtailcore_tags wagtailimages_tags  %}
+<div class="widget widget-posts">
+    <div class="blog-box">
+        <h2 class="widget-title">LATEST POST</h2>
+        <ul class="recent-posts clearfix">
+            {% for post in posts %}
+            <li>
+                <div class="thumb item-thumbnail">
+                    <a href="#">
+                        {% image post.professor.profile_image width-50 %}
+                        <div class="thumbnail-hoverlay main-color-1-bg"></div>
+                        <div class="thumbnail-hoverlay-cross"></div>
+                    </a>
+                </div>
+                <div class="text">
+                    <a href="{% pageurl post %}">{{ post.course_name }}</a>
+                    <p>{{ post.upload_date }}</p>
+                </div>
+            </li>
+            {% endfor %}
+        </ul><!-- /popular-news clearfix -->
+    </div>
+</div><!-- /widget-posts -->

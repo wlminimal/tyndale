@@ -34,7 +34,8 @@ def display_footer(context, calling_page=None):
 
 @register.inclusion_tag("home/inclusion/breadcrumbs.html", takes_context=True)
 def display_breadcrumbs(context, calling_page=None):
-    ancestors = calling_page.get_ancestors().exclude(title='Root')
+    current_page = context['self']
+    ancestors = current_page.get_ancestors().exclude(title='Root')
     return {
         "ancestors": ancestors,
         "current_page": calling_page,
@@ -119,3 +120,10 @@ def display_course(context):
         "request": context['request'],
     }
 
+
+@register.inclusion_tag("home/inclusion/latest_post.html", takes_context=True)
+def display_latest_post(context):
+    return {
+        "posts": CourseDetailPage.objects.all().order_by('-upload_date')[:5],
+        "request": context['request']
+    }

@@ -29,7 +29,7 @@
                             <div class="item-excerpt blog-item-excerpt"><p>{{ child.course_description | richtext | truncatewords:20 }}</p>
                             </div>
                             <div class="item-meta blog-item-meta">
-                                <span><a href="#">By {{ child.professor_name }}</a></span>
+                                <span><a href="{{ child.professor.link }}">By - {{ child.professor.name }}</a></span>
                             </div>
                             <a class="button" href="{% pageurl child %}">DETAIL<i class="fa fa-angle-right"></i></a>
                         </div>

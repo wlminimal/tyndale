@@ -13,21 +13,23 @@
             {{ page.course_description | richtext }}
         </div>
 
-        <div class="content-pad">
-            <div class="item-content">
-                <div class="item-meta blog-item-meta">
-                    <span>By <span class="sep">|</span> </span>
-                    <span>{{ page.upload_date }} <span class="sep">|</span> </span>
-                </div>
-            </div>
-        </div>
-
         <div class="about-author">
-            <div class="author-avatar">
-                <img src="{% static 'images/member/1.png' %}" alt="image">
-            </div>
-            <div class="author-info">
-                <h4></h4>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="author-avatar">
+                        {% image page.professor.profile_image width-200 %}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="item-content">
+                        <div class="item-meta blog-item-meta">
+                            <a href="{{ page.professor.link }}">
+                                <h4>By - {{ page.professor.name }}</h4>
+                            </a>
+                            <span>{{ page.upload_date }} <span class="sep">|</span> </span>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="clearfix"></div>
         </div>
@@ -35,23 +37,15 @@
         <div class="simple-navigation">
             <div class="row">
                 <div class="simple-navigation-item col-md-6 col-sm-6 col-xs-6 main-color-1-bg-hover ">
-                    <a class="maincolor2hover">
+                    {% with parent_url=self.get_ancestors.last %}
+                    <a class="maincolor2hover" href="{% pageurl parent_url %}">
                         <i class="fa fa-angle-left pull-left"></i>
                         <div class="simple-navigation-item-content">
-                            <span>Previous</span>
-                            <h4>University Ranking</h4>
+                            <span>Back</span>
+                            <h4>Back to List</h4>
                         </div>
                     </a>
-                </div>
-
-                <div class="simple-navigation-item col-md-6 col-sm-6 col-xs-6 main-color-1-bg-hover ">
-                    <a class="maincolor2hover pull-right">
-                        <i class="fa fa-angle-right pull-right"></i>
-                        <div class="simple-navigation-item-content">
-                            <span>Next</span>
-                            <h4>Your Career Starts Here</h4>
-                        </div>
-                    </a>
+                    {% endwith %}
                 </div>
             </div>
         </div>
