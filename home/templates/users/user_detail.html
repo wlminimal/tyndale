@@ -1,2 +1,54 @@
 {% extends "base.html" %}
+{% load i18n %}
 
+{% block content %}
+<div class="container">
+        <section class="main-content contact-posts">
+            <div class="container">
+                <div class="row">
+                    <div class="post-contact">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="contact-form">
+                                    <div class="line-box"></div>
+                                        <h1 class="login-title">{% trans "Your Profile" %}</h1>
+                                        <div class="line-box"></div>
+                                        <table class="table">
+                                            <thead>
+                                            <tr>
+                                                <th>{% trans "Username" %}</th>
+                                                <th>{% trans "First Name" %}</th>
+                                                <th>{% trans "Last Name" %}</th>
+                                                <th>{% trans "Email" %}</th>
+                                                <th>{% trans "Edit" %}</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td>{{ object.username }}</td>
+                                                <td>{{ object.first_name }}</td>
+                                                <td>{{ object.last_name }}</td>
+                                                <td>{{ object.email }}</td>
+                                                <td><a href="{% url 'users:update' %}">{% trans "Edit" %}</a></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                </div><!-- contact-form -->
+                            </div><!-- col-md-6 -->
+
+                            <div class="col-md-6">
+                                <div class="container">
+                                <div class="line-box"></div>
+                                    <div class="row">
+
+                                    </div>
+                                </div><!-- /container-fluid -->
+                            </div>
+                        </div><!-- /row-->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+{% endblock %}

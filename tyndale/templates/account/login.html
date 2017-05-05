@@ -16,7 +16,7 @@
                             <div class="contact-form">
                                 <div class="line-box"></div>
                                     <h1 class="login-title">{% trans "Sign In" %}</h1>
-                            <div class="line-box"></div>
+                                    <div class="line-box"></div>
                                     {% get_providers as socialaccount_providers %}
 
                                     {% if socialaccount_providers %}
@@ -45,10 +45,10 @@
                                       <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
                                       {% endif %}
                                         <div class="line-box"></div>
-                                      <div class="submit-wrap">
-                                          <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
-                                          <button class="flat-button button-style style-v1" type="submit">{% trans "Sign In" %}</button>
-                                      </div>
+                                          <div class="submit-wrap">
+                                              <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+                                              <button class="flat-button button-style style-v1" type="submit">{% trans "Sign In" %}</button>
+                                          </div>
                                     </form>
                             </div><!-- contact-form -->
                         </div><!-- col-md-6 -->

@@ -1,4 +1,4 @@
-{% load staticfiles tyndale_tags wagtailcore_tags wagtailimages_tags %}
+{% load i18n staticfiles tyndale_tags wagtailcore_tags wagtailimages_tags %}
 
 <div class="menu-hover">
     <div class="btn-menu">
@@ -14,34 +14,18 @@
                     <nav class="navbar menu-top">
                         <ul class="menu">
                             <li class="home">
-                                <a href="blog.html">Blog</a>
-                                <ul class="submenu">
-                                    <li><a href="blog-single.html">Blog Single</a></li>
-                                </ul><!-- /.submenu -->
+                                <a href="{% url 'account_signup' %}">{% trans "Register" %}</a>
                             </li>
-                            <li><a href="portfolio.html">Portfolio</a>
-                                <ul class="submenu">
-                                    <li><a href="portfolio-single.html">Portfolio Single</a></li>
-                                </ul><!-- /.submenu -->
-                            </li>
-                            <li><a href="event-grid.html">Events</a>
-                                <ul class="submenu">
-                                    <li><a href="event-list.html">Events List</a></li>
-                                    <li><a href="event-single.html">Events Single</a></li>
-                                </ul><!-- /.submenu -->
-                            </li>
-                            <li><a href="course-grid.html">Courses</a>
-                                <ul class="submenu">
-                                    <li><a href="course-list.html">Courses List</a></li>
-                                    <li><a href="course-single.html">Courses Single</a></li>
-                                </ul><!-- /.submenu -->
-                            </li>
-                            <li><a href="member.html">Member</a>
-                                <ul class="submenu">
-                                    <li><a href="member-single.html">Members Single</a></li>
-                                    <li><a href="contact.html">Contact</a></li>
-                                </ul><!-- /.submenu -->
-                            </li>
+                            {% if request.user.is_authenticated %}
+                                <li><a href="{% url 'users:detail' request.user.username %}">{% trans "Profile" %}</a>
+                                    <ul class="submenu">
+                                        <li><a href="{% url 'users:update' %}">{% trans "Edit Profile" %}</a></li>
+                                        <li><a href="{% url 'account_logout' %}">{% trans "Log out" %}</a></li>
+                                    </ul>
+                                </li>
+                            {% else %}
+                                <li><a href="{% url 'account_login' %}">{% trans "Login" %}</a></li>
+                            {% endif %}
                         </ul><!-- /.menu -->
                     </nav><!-- /.mainnav -->
 
@@ -50,28 +34,14 @@
                     </a>
 
                     <div class="submenu top-search">
-                        <form class="search-form">
+                        <form class="search-form" action="{% url 'search' %}" method="get">
                             <div class="input-group">
-                                <input type="search" class="search-field" placeholder="Search Here">
+                                <input type="search" class="search-field" placeholder="Search Here" name="query"{% if search_query %} value="{{ search_query }}"{% endif %}>
                                 <span class="input-group-btn">
                                     <button type="submit"><i class="fa fa-search fa-4x"></i></button>
                                 </span>
                             </div>
                         </form>
-                    </div>
-
-                    <div class="navbar-right topnav-sidebar">
-                        <ul class="textwidget">
-                            <li>
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-youtube"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                            </li>
-                        </ul>
                     </div>
                 </div><!-- col-md-12 -->
             </div><!-- row -->
@@ -97,7 +67,7 @@
                         <ul class="menu">
                             {% for menu in menuitems %}
                                 <li>
-                                    <a href="{% pageurl menu %}">{{ menu.title }} <span class="menu-description">Sub title for menu</span></a>
+                                    <a href="{% pageurl menu %}">{{ menu.title }} </a>
                                     {% if menu.has_children %}
                                         <ul class="submenu">
                                         {% for child in menu.get_children %}

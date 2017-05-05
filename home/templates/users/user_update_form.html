@@ -1,14 +1,8 @@
-{% extends "account/base.html" %}
-
+{% extends "base.html" %}
 {% load i18n %}
 
-{% block head_title %}{% trans "Change Password" %}{% endblock %}
-
 {% block content %}
-
-
-
-    <div class="container">
+<div class="container">
         <section class="main-content contact-posts">
             <div class="container">
                 <div class="row">
@@ -17,16 +11,16 @@
                             <div class="col-md-6">
                                 <div class="contact-form">
                                     <div class="line-box"></div>
-                                        <h1 class="login-title">{% trans "Change Password" %}</h1>
+                                        <h1 class="login-title">{% trans "Profile Update" %}</h1>
                                         <div class="line-box"></div>
-                                        <form method="POST" action="{% url 'account_change_password' %}" class="password_change">
-                                            {% csrf_token %}
-                                            {{ form.as_p }}
-                                            <div class="line-box"></div>
-                                            <div class="submit-wrap">
-                                               <button class="flat-button button-style style-v1" type="submit" name="action">{% trans "Change Password" %}</button>
-                                            </div>
-                                        </form>
+                                    <form action="" method="post">
+                                        {% csrf_token %}
+                                        {{ form.as_p }}
+
+                                        <div class="submit-wrap">
+                                            <button class="flat-button button-style style-v1" type="submit">{% trans "Update" %}</button>
+                                        </div>
+                                    </form>
                                 </div><!-- contact-form -->
                             </div><!-- col-md-6 -->
 
@@ -43,5 +37,6 @@
                 </div>
             </div>
         </section>
+
     </div>
 {% endblock %}

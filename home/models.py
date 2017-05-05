@@ -4,9 +4,9 @@ from django.db import models
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 import datetime
 
-from wagtail.wagtailcore.models import Page
+from wagtail.wagtailcore.models import Page, Orderable
 from wagtail.wagtailcore.fields import RichTextField
-from wagtail.wagtailadmin.edit_handlers import FieldPanel, FieldRowPanel, InlinePanel, MultiFieldPanel
+from wagtail.wagtailadmin.edit_handlers import FieldPanel, FieldRowPanel, InlinePanel, MultiFieldPanel, PageChooserPanel
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail.wagtailsnippets.edit_handlers import SnippetChooserPanel
 from wagtail.wagtailsnippets.models import register_snippet
@@ -36,50 +36,74 @@ class Staff(models.Model):
         return self.name
 
 
+@register_snippet
+class Quote(models.Model):
+    quote_message = RichTextField(default="quote_message")
+    quote_speaker = models.CharField(max_length=50, default="Taehwan Kim")
+    quote_speaker_title = models.CharField(max_length=100, default="Senior Pastor")
+    quote_profile_image = models.ForeignKey(
+        "wagtailimages.Image",
+        blank=False,
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        help_text="50x50 pixels image"
+    )
+
+    def __str__(self):
+        return self.quote_speaker
+
+
+class HomepageQuotes(Orderable, models.Model):
+    page = ParentalKey('home.HomePage', related_name='home_quote')
+    quote = models.ForeignKey('home.Quote', related_name='+')
+
+    class Meta:
+        verbose_name = "Quote for Homepage"
+        verbose_name_plural = "Quotes for Homepage"
+
+    panels = [
+        SnippetChooserPanel('quote')
+    ]
+
+    def __str__(self):
+        return self.page.title + " --> " + self.quote.quote_speaker
+
+
+@register_snippet
+class SliderMessage(models.Model):
+    title = models.CharField(max_length=100, default="Good is good")
+    message = RichTextField(default="Message")
+    image = models.ForeignKey(
+        "wagtailimages.Image",
+        null=True,
+        blank=False,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        help_text="150x150 pixel"
+    )
+
+    def __str__(self):
+        return self.title
+
+
+class HomepageSliderMessages(Orderable, models.Model):
+    page = ParentalKey('home.HomePage', related_name='slider_message')
+    message = models.ForeignKey('home.SliderMessage', related_name='+')
+
+    class Meta:
+        verbose_name = "Message for slider"
+        verbose_name_plural = "Messages for slider"
+
+    panels = [
+        SnippetChooserPanel('message')
+    ]
+
+    def __str__(self):
+        return self.page.title + " --> " + self.message.title
+
+
 class HomePage(Page):
-    overlay_banner_title_1 = models.TextField(default="Your Career starts here")
-    overlay_banner_description_1 = RichTextField(default="Description")
-    overlay_banner_thumb_image_1 = models.ForeignKey(
-        'wagtailimages.Image',
-        blank=False,
-        null=True,
-        on_delete=models.SET_NULL,
-        related_name='+',
-        help_text="150x150 pixel image"
-    )
-
-    overlay_banner_title_2 = models.TextField(default="Your Career starts here")
-    overlay_banner_description_2 = RichTextField(default="Description")
-    overlay_banner_thumb_image_2 = models.ForeignKey(
-        'wagtailimages.Image',
-        blank=False,
-        null=True,
-        on_delete=models.SET_NULL,
-        related_name='+',
-        help_text="150x150 pixel image"
-    )
-
-    overlay_banner_title_3 = models.TextField(default="Your Career starts here")
-    overlay_banner_description_3 = RichTextField(default="Description")
-    overlay_banner_thumb_image_3 = models.ForeignKey(
-        'wagtailimages.Image',
-        blank=False,
-        null=True,
-        on_delete=models.SET_NULL,
-        related_name='+',
-        help_text="150x150 pixel image"
-    )
-
-    overlay_banner_title_4 = models.TextField(default="Your Career starts here")
-    overlay_banner_description_4 = RichTextField(default="Description")
-    overlay_banner_thumb_image_4 = models.ForeignKey(
-        'wagtailimages.Image',
-        blank=False,
-        null=True,
-        on_delete=models.SET_NULL,
-        related_name='+',
-        help_text="150x150 pixel image"
-    )
 
     slider_image_1 = models.ForeignKey(
         'wagtailimages.Image',
@@ -90,9 +114,6 @@ class HomePage(Page):
         help_text="1920x1280 pixel image"
     )
 
-    slider_banner_title_1 = models.TextField(default="For a better education")
-    slider_banner_description_1 = RichTextField(default="description")
-
     slider_image_2 = models.ForeignKey(
         'wagtailimages.Image',
         blank=False,
@@ -101,9 +122,6 @@ class HomePage(Page):
         related_name='+',
         help_text="1920x1280 pixel image"
     )
-
-    slider_banner_title_2 = models.TextField(default="For a better education")
-    slider_banner_description_2 = RichTextField(default="description")
 
     about_tiu_title = models.TextField(default="About TIU")
     about_tiu_description = RichTextField(default="Description of TIU")
@@ -160,30 +178,35 @@ class HomePage(Page):
     yala_title = models.TextField(default="Learn about Yala")
     yala_message = RichTextField(default="message")
 
+    grid_title = models.CharField(max_length=100, default="Academic Programs")
+    grid_subtitle = models.TextField(default="Description of grid item")
+    grid_link_page = models.ForeignKey(
+        "wagtailcore.Page",
+        blank=False,
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
+    @property
+    def academics(self):
+        academics = AcademicProgramDetailPage.objects.all().order_by('-order_number')
+
+        return academics
+
+    def get_context(self, request, *args, **kwargs):
+        academics = self.academics
+        context = super(HomePage, self).get_context(request, *args, **kwargs)
+        context['academics'] = academics
+
+        return context
+
     content_panels = Page.content_panels + [
         ImageChooserPanel('slider_image_1'),
-        FieldPanel('slider_banner_title_1'),
-        FieldPanel('slider_banner_description_1'),
 
         ImageChooserPanel('slider_image_2'),
-        FieldPanel('slider_banner_title_2'),
-        FieldPanel('slider_banner_description_2'),
 
-        FieldPanel('overlay_banner_title_1'),
-        FieldPanel('overlay_banner_description_1'),
-        ImageChooserPanel('overlay_banner_thumb_image_1'),
-
-        FieldPanel('overlay_banner_title_2'),
-        FieldPanel('overlay_banner_description_2'),
-        ImageChooserPanel('overlay_banner_thumb_image_2'),
-
-        FieldPanel('overlay_banner_title_3'),
-        FieldPanel('overlay_banner_description_3'),
-        ImageChooserPanel('overlay_banner_thumb_image_3'),
-
-        FieldPanel('overlay_banner_title_4'),
-        FieldPanel('overlay_banner_description_4'),
-        ImageChooserPanel('overlay_banner_thumb_image_4'),
+        InlinePanel('slider_message', label="Message in Slider"),
 
         FieldPanel('about_tiu_title'),
         FieldPanel('about_tiu_description'),
@@ -205,6 +228,11 @@ class HomePage(Page):
         ImageChooserPanel('yala_image'),
         FieldPanel('yala_title'),
         FieldPanel('yala_message'),
+        FieldPanel('grid_title'),
+        FieldPanel('grid_subtitle'),
+        PageChooserPanel('grid_link_page'),
+        InlinePanel('home_quote', label="Quotes"),
+
     ]
 
 

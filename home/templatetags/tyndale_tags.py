@@ -29,6 +29,7 @@ def display_footer(context, calling_page=None):
 
     return {
         "calling_page": calling_page,
+        "request": context['request'],
     }
 
 
@@ -125,5 +126,20 @@ def display_course(context):
 def display_latest_post(context):
     return {
         "posts": CourseDetailPage.objects.all().order_by('-upload_date')[:5],
+        "request": context['request']
+    }
+
+
+@register.inclusion_tag("home/inclusion/foorter_menu.html", takes_context=True)
+def display_footer_menu(context, parent, calling_page=None):
+
+    menuitems = parent.get_children().live().in_menu()
+    for menuitem in menuitems:
+        menuitem.has_children = menuitem.get_children().live().in_menu().exists()
+        menuitem.active = (calling_page.url.startswith(menuitem.url) if calling_page else False)
+
+    return {
+        "calling_page": calling_page,
+        "menuitems": menuitems,
         "request": context['request']
     }

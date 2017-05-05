@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'home',
     'search',
 
+    'dashboard',
+
     'wagtail.wagtailforms',
     'wagtail.wagtailredirects',
     'wagtail.wagtailembeds',
@@ -156,7 +158,7 @@ WAGTAIL_SITE_NAME = "tyndale"
 
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
-BASE_URL = 'http://example.com'
+BASE_URL = 'http://www.tyndaleinternationaluniversity.org'
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -202,3 +204,5 @@ AUTOSLUG_SLUGIFY_FUNCTION = 'slugify.slugify'
 SITE_ID = 1
 WAGTAIL_PASSWORD_MANAGEMENT_ENABLED = True
 WAGTAIL_PASSWORD_RESET_ENABLED = True
+# WAGTAIL_FRONTEND_LOGIN_TEMPLATE = 'account_login'
+WAGTAIL_FRONTEND_LOGIN_URL = 'account_login'

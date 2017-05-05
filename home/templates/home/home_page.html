@@ -10,22 +10,23 @@
                     <li data-transition="slidedown" data-slotamount="7" data-masterspeed="1000" data-saveperformance="on">
                         {% image page.slider_image_1 width-1920 as slider_image_1 %}
                         <img src="{{ slider_image_1.url }}" alt="slider-image">
-
+                        <!--
                         <div class="tp-caption sft desc-slide center color-white color-full" data-x="770" data-y="479" data-speed="1000" data-start="1000" data-easing="Power3.easeInOut">
                             <div class="title main-color-1 font-2">{{ page.slider_banner_title_1 }}</div>
                             <div class="content">{{ page.slider_banner_description_1 | richtext }}</div>
                         </div>
-
+                        -->
                     </li>
 
                     <li data-transition="slidedown" data-slotamount="7" data-masterspeed="1000" data-saveperformance="on">
                         {% image page.slider_image_2 width-1920 as slider_image_2 %}
                         <img src="{{ slider_image_2.url }}" alt="slider-image">
-
+                        <!--
                         <div class="tp-caption sft desc-slide center color-white color-full" data-x="770" data-y="479" data-speed="1000" data-start="1000" data-easing="Power3.easeInOut">
                             <div class="title main-color-1 font-2">{{ page.slider_banner_title_2 }}</div>
                             <div class="content">{{ page.slider_banner_description_2 }}</div>
                         </div>
+                        -->
                     </li>
                 </ul>
             </div>
@@ -40,98 +41,31 @@
                                 <div class="post-scroller-wrap">
                                     <div class="post-scroller-carousel" data-next=".post-scroller-down" data-prev=".post-scroller-up">
                                         <div class="post-scroller-carousel-inner">
-                                            <div class="item post-scroller-item active">
-                                                <div class="scroller-item-inner">
-                                                    <div class="scroller-item-content post-item-mini">
-                                                        <div class="row">
-                                                            <div class="col-md-4 col-sm-4 col-xs-4 post-thumbnail-mini">
-                                                                <div class="item-thumbnail">
-                                                                    <a href="#">
-                                                                        {% image page.overlay_banner_thumb_image_1 width-150 as thumb_image1 %}
-                                                                        <img src="{{ thumb_image1.url }}" alt="image">
-                                                                        <div class="thumbnail-hoverlay main-color-1-bg"></div>
-                                                                        <div class="thumbnail-hoverlay-cross"></div>
-                                                                    </a>
+                                            {% for message in page.slider_message.all %}
+
+                                                <div class="item post-scroller-item">
+                                                    <div class="scroller-item-inner">
+                                                        <div class="scroller-item-content post-item-mini">
+                                                            <div class="row">
+                                                                <div class="col-md-4 col-sm-4 col-xs-4 post-thumbnail-mini">
+                                                                    <div class="item-thumbnail">
+                                                                        <a href="#">
+                                                                            {% image message.message.image width-150 %}
+                                                                            <div class="thumbnail-hoverlay main-color-1-bg"></div>
+                                                                            <div class="thumbnail-hoverlay-cross"></div>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-8 col-sm-8 col-xs-8 post-content-mini">
+                                                                    <h4><a class="post-title-mini main-color-1-hover" href="#" title="{{ message.message.title }}">{{ message.message.title }}</a></h4>
+                                                                    <div class="post-excerpt-mini">{{ message.message.message | richtext }}</div>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-md-8 col-sm-8 col-xs-8 post-content-mini">
-                                                                <h4><a class="post-title-mini main-color-1-hover" href="http://university.cactusthemes.com/video-post/" title="{{ page.overlay_banner_title_1 }}">{{ page.overlay_banner_title_1 }}</a></h4>
-                                                                <div class="post-excerpt-mini">{{ page.overlay_banner_description_1 | richtext }}</div>
-                                                            </div>
-                                                        </div>
-                                                    </div><!--/post-item-mini-->
-                                                </div>
-                                            </div><!--/post-scroller-item-->
+                                                        </div><!--/post-item-mini-->
+                                                    </div>
+                                                </div><!--/post-scroller-item-->
 
-                                            <div class="item post-scroller-item">
-                                                <div class="scroller-item-inner">
-                                                    <div class="scroller-item-content post-item-mini">
-                                                        <div class="row">
-                                                            <div class="col-md-4 col-sm-4 col-xs-4 post-thumbnail-mini">
-                                                                <div class="item-thumbnail">
-                                                                    <a href="#">
-                                                                        {% image page.overlay_banner_thumb_image_2 width-150 as thumb_image2 %}
-                                                                        <img src="{{ thumb_image2.url }}" alt="image">
-                                                                        <div class="thumbnail-hoverlay main-color-1-bg"></div>
-                                                                        <div class="thumbnail-hoverlay-cross"></div>
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-8 col-sm-8 col-xs-8 post-content-mini">
-                                                                <h4><a class="post-title-mini main-color-1-hover" href="http://university.cactusthemes.com/gallery-post/" title={{ page.overlay_banner_title_2 }}>{{ page.overlay_banner_title_2 }}</a></h4>
-                                                                <div class="post-excerpt-mini">{{ page.overlay_banner_description_2 | richtext }}</div>
-                                                            </div>
-                                                        </div>
-                                                    </div><!--/post-item-mini-->
-                                                </div>
-                                            </div><!--/post-scroller-item-->
-
-                                            <div class="item post-scroller-item">
-                                                <div class="scroller-item-inner">
-                                                    <div class="scroller-item-content post-item-mini">
-                                                        <div class="row">
-                                                            <div class="col-md-4 col-sm-4 col-xs-4 post-thumbnail-mini">
-                                                                <div class="item-thumbnail">
-                                                                    <a href="#">
-                                                                        {% image page.overlay_banner_thumb_image_3 width-150 as thumb_image3 %}
-                                                                        <img src="{{ thumb_image3.url }}" alt="image">
-                                                                        <div class="thumbnail-hoverlay main-color-1-bg"></div>
-                                                                        <div class="thumbnail-hoverlay-cross"></div>
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-8 col-sm-8 col-xs-8 post-content-mini">
-                                                                <h4><a class="post-title-mini main-color-1-hover" href="http://university.cactusthemes.com/the-highest-ranked-university/" title="{{ page.overlay_banner_title_3 }}">{{ page.overlay_banner_title_3 }}</a></h4>
-                                                                <div class="post-excerpt-mini">{{ page.overlay_banner_description_3 | richtext }}</div>
-                                                            </div>
-                                                        </div>
-                                                    </div><!--/post-item-mini-->
-                                                </div>
-                                            </div><!--/post-scroller-item-->
-
-                                            <div class="item post-scroller-item">
-                                                <div class="scroller-item-inner">
-                                                    <div class="scroller-item-content post-item-mini">
-                                                        <div class="row">
-                                                            <div class="col-md-4 col-sm-4 col-xs-4 post-thumbnail-mini">
-                                                                <div class="item-thumbnail">
-                                                                    <a href="#">
-                                                                        {% image page.overlay_banner_thumb_image_4 width-150 as thumb_image4 %}
-                                                                        <img src="{{ thumb_image4.url }}" alt="image">
-                                                                        <div class="thumbnail-hoverlay main-color-1-bg"></div>
-                                                                        <div class="thumbnail-hoverlay-cross"></div>
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-8 col-sm-8 col-xs-8 post-content-mini">
-                                                                <h4><a class="post-title-mini main-color-1-hover" href="http://university.cactusthemes.com/standard-post-2/" title="{{ page.overlay_banner_title_4 }}">{{ page.overlay_banner_title_4 }}</a></h4>
-                                                                <div class="post-excerpt-mini">{{ page.overlay_banner_description_4 | richtext }}</div>
-                                                            </div>
-                                                        </div>
-                                                    </div><!--/post-item-mini-->
-                                                </div>
-                                            </div><!--/post-scroller-item-->
-
+                                            {% endfor %}
 
                                     <div class="post-scroller-control">
                                         <span class="post-scroller-button-wrap">
@@ -155,7 +89,7 @@
                             <div class="post">
                                 <h1 class="title">{{ page.about_tiu_title }}</h1>
                                 <p>{{ page.about_tiu_description | richtext }}</p>
-                                <a class="flat-button button-button_30 btn-default " href="#" data-delay="0">Read more <i class="fa fa-angle-right"></i></a>
+                                <a class="flat-button button-button_30 btn-default " href="/about" data-delay="0">Read more <i class="fa fa-angle-right"></i></a>
                             </div>
                         </div>
 
@@ -163,7 +97,7 @@
                             <div class="post">
                                 <h1 class="title">{{ page.state_mission_title }}</h1>
                                 <p>{{ page.state_mission_description | richtext }}</p>
-                                <a class="flat-button button-button_30 btn-default " href="#" data-delay="0">Read more <i class="fa fa-angle-right"></i></a>
+                                <a class="flat-button button-button_30 btn-default " href="/about/statement-mission" data-delay="0">Read more <i class="fa fa-angle-right"></i></a>
                             </div>
                         </div>
 
@@ -171,7 +105,7 @@
                             <div class="post">
                                 <h1 class="title">{{ page.state_faith_title }}</h1>
                                 <p>{{ page.state_faith_description | richtext }}</p>
-                                <a class="flat-button button-button_30 btn-default " href="#" data-delay="0">Read more <i class="fa fa-angle-right"></i></a>
+                                <a class="flat-button button-button_30 btn-default " href="/about/statement-faith" data-delay="0">Read more <i class="fa fa-angle-right"></i></a>
                             </div>
                         </div>
                     </div><!--/row-->
@@ -260,385 +194,44 @@
                             <div class="grid-item color-full">
                                 <div class="event-item">
                                     <div class="grid-item-content">
-                                        <h1 class="title">Upcoming Events</h1>
-                                        <p>Cras site amet nibh libero, in gravida nulla dignissimos</p>
-                                        <a class="flat-button" href="#">ALL EVENTS<i class="fa fa-angle-right"></i></a>
+                                        <h1 class="title">{{ page.grid_title }}</h1>
+                                        <p>{{ page.grid_subtitle }}</p>
+                                        <a class="flat-button" href="{{ page.grid_link_page.url }}">{% trans "See All" %}<i class="fa fa-angle-right"></i></a>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="grid-item">
-                                <div class="grid-item-inner">
-                                    <div class="event-item">
-                                        <div class="event-thumbnail">
-                                            <a href="#"><img src="{% static 'images/about/index1/event/gril/1.jpg' %}" alt="image">
-                                            </a>
-                                        </div><!-- /event-thumbnail -->
+                            {% for academic in academics %}
+                                <div class="grid-item">
+                                    <div class="grid-item-inner">
+                                        <div class="event-item">
+                                            <div class="event-thumbnail">
+                                                <a href="#">{% image academic.academic_image width-500 %}
+                                                </a>
+                                            </div><!-- /event-thumbnail -->
 
-                                        <div class="date-block">
-                                            <div class="month">Jun</div>
-                                            <div class="day">22</div>
-                                        </div><!-- /date-block -->
+                                            <div class="date-block">
+                                                <div class="month">{{ academic.start_date }}</div>
+                                            </div><!-- /date-block -->
 
-                                        <div class="event-overlay">
-                                            <div class="cs-post-header">
-                                                <div class="cs-category-links">
-                                                    <a class="overlay-top" href="#">
-                                                        <h4>Chicago Architecture Foundation River Cruise</h4>
-                                                        <span class="price yellow">Free</span>
-                                                    </a>
+                                            <div class="event-overlay">
+                                                <div class="cs-post-header">
+                                                    <div class="cs-category-links">
+                                                        <a class="overlay-top" href="{% pageurl academic %}">
+                                                            <h4>{{ academic.academic_name }}</h4>
+                                                        </a>
 
-                                                    <div class="overlay-footer">
-                                                        <div>At 8:00 am</div>
-                                                        <div>Bentley Campus, Perth, WA</div>
+                                                        <div class="overlay-footer">
+                                                            <div>{% trans "Duration" %} : {{ academic.duration }}</div>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div><!-- /event-overlay -->
+                                            </div><!-- /event-overlay -->
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="grid-item">
-                                <div class="grid-item-inner">
-                                    <div class="event-item">
-                                        <div class="event-thumbnail">
-                                            <a href="#">
-                                                <img src="{% static 'images/about/index1/event/gril/2.jpg' %}" alt="image">
-                                            </a>
-                                        </div><!-- /event-thumbnail -->
-
-                                        <div class="date-block">
-                                            <div class="month">Jun</div>
-                                            <div class="day">30</div>
-                                        </div><!-- /date-block -->
-
-                                        <div class="event-overlay">
-                                            <div class="cs-post-header">
-                                                <div class="cs-category-links">
-                                                    <a class="overlay-top" href="#">
-                                                        <h4>Good Morning America</h4>
-                                                        <span class="price yellow">Free</span>
-                                                    </a>
-
-                                                    <div class="overlay-footer">
-                                                        <div>At 7:00 am</div>
-                                                        <div>Bentley Campus, Perth, WA</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div><!-- /event-overlay -->
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="grid-item">
-                                <div class="grid-item-inner">
-                                    <div class="event-item">
-                                        <div class="event-thumbnail">
-                                            <a href="#">
-                                                <img src="{% static 'images/about/index1/event/gril/3.jpg' %}" alt="image">
-                                            </a>
-                                        </div><!-- /event-thumbnail -->
-
-                                        <div class="date-block">
-                                            <div class="month">Jun</div>
-                                            <div class="day">20</div>
-                                        </div><!-- /date-block -->
-
-                                        <div class="event-overlay">
-                                            <div class="cs-post-header">
-                                                <div class="cs-category-links">
-                                                    <a class="overlay-top" href="#">
-                                                        <h4>Student Exchange Program Information Sessions</h4>
-                                                        <span class="price yellow">From £19</span>
-                                                    </a>
-
-                                                    <div class="overlay-footer">
-                                                        <div>At 10:00 am</div>
-                                                        <div>Bentley Campus, Perth, WA</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div><!-- /event-overlay -->
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="grid-item">
-                                <div class="grid-item-inner">
-                                    <div class="event-item">
-                                        <div class="event-thumbnail">
-                                            <a href="#">
-                                                <img src="{% static 'images/about/index1/event/gril/4.jpg' %}" alt="image">
-                                            </a>
-                                        </div><!-- /event-thumbnail -->
-
-                                        <div class="date-block">
-                                            <div class="month">Jun</div>
-                                            <div class="day">22</div>
-                                        </div><!-- /date-block -->
-
-                                        <div class="event-overlay">
-                                            <div class="cs-post-header">
-                                                <div class="cs-category-links">
-                                                    <a class="overlay-top" href="#">
-                                                        <h4>Vegie Garden Wednesday Workshops</h4>
-                                                        <span class="price yellow">£54</span>
-                                                    </a>
-
-                                                    <div class="overlay-footer">
-                                                        <div>At 1:00 pm</div>
-                                                        <div>Bentley Campus, Perth, WA</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div><!-- /event-overlay -->
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="grid-item">
-                                <div class="grid-item-inner">
-                                    <div class="event-item">
-                                        <div class="event-thumbnail">
-                                            <a href="#">
-                                                <img src="{% static 'images/about/index1/event/gril/5.jpg' %}" alt="image">
-                                            </a>
-                                        </div><!-- /event-thumbnail -->
-
-                                        <div class="date-block">
-                                            <div class="month">Jun</div>
-                                            <div class="day">21</div>
-                                        </div><!-- /date-block -->
-
-                                        <div class="event-overlay">
-                                            <div class="cs-post-header">
-                                                <div class="cs-category-links">
-                                                    <a class="overlay-top" href="#">
-                                                        <h4>The Ecosystem Within Us</h4>
-                                                        <span class="price yellow">From £149</span>
-                                                    </a>
-
-                                                    <div class="overlay-footer">
-                                                        <div>At 7:00 am</div>
-                                                        <div>Bentley Campus, Perth, WA</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div><!-- /event-overlay -->
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="grid-item">
-                                <div class="grid-item-inner">
-                                    <div class="event-item">
-                                        <div class="event-thumbnail">
-                                            <a href="#">
-                                                <img src="{% static 'images/about/index1/event/gril/6.jpg' %}" alt="image">
-                                            </a>
-                                        </div><!-- /event-thumbnail -->
-
-                                        <div class="date-block">
-                                            <div class="month">Jun</div>
-                                            <div class="day">20</div>
-                                        </div><!-- /date-block -->
-
-                                        <div class="event-overlay">
-                                            <div class="cs-post-header">
-                                                <div class="cs-category-links">
-                                                    <a class="overlay-top" href="#">
-                                                        <h4>Science In The New Era</h4>
-                                                        <span class="price yellow">From £49</span>
-                                                    </a>
-
-                                                    <div class="overlay-footer">
-                                                        <div>At 4:00 pm</div>
-                                                        <div>Bentley Campus, Perth, WA</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div><!-- /event-overlay -->
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="grid-item">
-                                <div class="grid-item-inner">
-                                    <div class="event-item">
-                                        <div class="event-thumbnail">
-                                            <a href="#">
-                                                <img src="{% static 'images/about/index1/event/gril/7.jpg' %}" alt="image">
-                                            </a>
-                                        </div><!-- /event-thumbnail -->
-
-                                        <div class="date-block">
-                                            <div class="month">Jun</div>
-                                            <div class="day">19</div>
-                                        </div><!-- /date-block -->
-
-                                        <div class="event-overlay">
-                                            <div class="cs-post-header">
-                                                <div class="cs-category-links">
-                                                    <a class="overlay-top" href="#">
-                                                        <h4>How To Sell Anything</h4>
-                                                        <span class="price yellow">From £99</span>
-                                                    </a>
-
-                                                    <div class="overlay-footer">
-                                                        <div>At 9:30 am</div>
-                                                        <div>Bentley Campus, Perth, WA</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div><!-- /event-overlay -->
-                                    </div>
-                                </div>
-                            </div>
+                            {% endfor %}
                         </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="flat-row padding-small">
-            <div class="container">
-                <div class="flat-choose-us">
-                    <div class="row">
-                        <div class="col-md-6 col-sm-6">
-                            <div class="flat-accordion">
-                                <div class="name-toggle">
-                                    <h2 class="title">Why Choose Us</h2>
-                                </div>
-                                <div class="flat-toggle">
-                                    <div class="toggle-title active">Build Your Own Homepage With Visual Composer</div>
-                                    <div class="toggle-content">
-                                        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
-                                    </div>
-                                </div><!-- /toggle -->
-                                <div class="flat-toggle">
-                                    <div class="toggle-title">Clean, Beautiful And Responsive Design</div>
-                                    <div class="toggle-content">
-                                        <div class="info">
-                                            <p class="desc-info">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                        </div>
-                                    </div>
-                                </div><!-- /.toggle -->
-                                <div class="flat-toggle">
-                                    <div class="toggle-title">U-Event Plugin Allow You To Sell Ticket</div>
-                                    <div class="toggle-content">
-                                        <div class="info">
-                                            <p class="desc-info">Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur.</p>
-                                        </div>
-                                    </div>
-                                </div><!-- /.toggle -->
-                                <div class="flat-toggle">
-                                    <div class="toggle-title">Sell Courses With U-Course Plugin</div>
-                                    <div class="toggle-content">
-                                        <div class="info">
-                                            <p class="desc-info">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.</p>
-                                        </div>
-                                    </div>
-                                </div><!-- /.toggle -->
-
-                                <div class="flat-toggle">
-                                    <div class="toggle-title">Shop Version Available With Woo Commerce Integrated</div>
-                                    <div class="toggle-content">
-                                        <div class="info">
-                                            <p class="desc-info">Empty section. Edit page to add content here.</p>
-                                        </div>
-                                    </div>
-                                </div><!-- /.toggle -->
-
-                                <div class="flat-toggle">
-                                    <div class="toggle-title">Professional Look and Feel For Your Business</div>
-                                    <div class="toggle-content">
-                                        <div class="info">
-                                            <p class="desc-info">Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus</p>
-                                        </div>
-                                    </div>
-                                </div><!-- /.toggle -->
-                            </div><!-- /.accordion -->
-                        </div><!--/col-md-6 col-sm-6 -->
-
-                        <div class="col-md-6 col-sm-6">
-                            <div class="flat-blog">
-                                <div class="section-header">
-                                    <div class="name-blog">
-                                        <h2 class="title">Blog</h2>
-                                        <a class="flat-button button-right" href="#2">VISIT BLOG <i class="fa fa-angle-right"></i></a>
-                                    </div>
-                                </div>
-
-                                <div class="section-body">
-                                    <div class="row">
-                                        <div class="col-md-12 shortcode-blog-item">
-                                            <div class="content-pad">
-                                                <div class="post-item row">
-                                                    <div class="col-md-6 col-sm-12">
-                                                        <div class="content-pad">
-                                                            <div class="item-thumbnail">
-                                                                <a href="#">
-                                                                    <img src="{% static 'images/about/index1/blog/1.jpg' %}" alt="image">
-                                                                    <span class="thumbnail-overlay">June 3, 2014</span>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6 col-sm-12">
-                                                        <div class="content-pad">
-                                                            <div class="item-content">
-                                                                <h3 class="item-title">
-                                                                    <a href="#" title="Your Career Starts Here" class="main-color-1-hover">Your Career Starts Here</a>
-                                                                </h3>
-                                                                <div class="shortcode-blog-excerpt">On the other hand we denounce with righteous indignation and dislike men who are so beguiled and demoralized.</div>
-                                                                <div class="item-meta">
-                                                                <a class="flat-button" href="#" title="Your Career Starts Here">DETAILS <i class="fa fa-angle-right"></i></a>
-                                                                <a href="#" class="main-color-1-hover" title="View comments">0 COMMENTS</a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div><!--/post-item-->
-                                            </div>
-                                        </div><!--/shortcode-blog-item-->
-
-                                        <div class="col-md-12 shortcode-blog-item">
-                                            <div class="content-pad">
-                                                <div class="post-item row">
-                                                    <div class="col-md-6 col-sm-12">
-                                                        <div class="content-pad">
-                                                            <div class="item-thumbnail">
-                                                                <a href="#">
-                                                                    <img src="{% static 'images/about/index1/blog/2.jpg' %}" alt="image">
-                                                                    <span class="thumbnail-overlay">June 3, 2014</span>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-md-6 col-sm-12">
-                                                        <div class="content-pad">
-                                                            <div class="item-content">
-                                                                <h3 class="item-title">
-                                                                    <a href="#" title="Spark Of Genius" class="main-color-1-hover">Spark Of Genius</a>
-                                                                </h3>
-                                                                <div class="shortcode-blog-excerpt">To take a trivial example which of us ever undertakes laborious physical exercise except.</div>
-                                                                <div class="item-meta">
-                                                                    <a class="flat-button" href="#" title="Spark Of Genius">DETAILS <i class="fa fa-angle-right"></i></a>
-                                                                    <a href="#" class="main-color-1-hover" title="View comments">0 COMMENTS</a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div><!--/post-item-->
-                                            </div>
-                                        </div><!--/shortcode-blog-item-->
-                                    </div><!--/row-->
-                                </div>
-                            </div>
-                        </div><!--/col-md-6 col-sm-6 -->
                     </div>
                 </div>
             </div>
@@ -652,51 +245,27 @@
                             <div class="flat-causes">
                                 <div class="featured-causes" data-item="3" data-nav="false"
                                     data-dots="false" data-auto="false">
-                                    <div class="item">
-                                        <div class="text">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit metus vel leo placerat cursus. Nullam rutrum velit eget quam pretium vehicula. Maecenas enim velit.</p>
-                                        </div>
 
-                                        <div class="title-testimonial">
-                                            <div class="thumb-title">
-                                                <img src="{% static 'images/member/1.jpg' %}" alt="image">
+                                    {% for quote in page.home_quote.all %}
+                                        <div class="item">
+                                            <div class="text">
+                                                <p>{{ quote.quote.quote_message | richtext }}</p>
                                             </div>
-                                            <div class="post-title">
-                                                <h6 class="title-post">John Doe</h6>
-                                                <span>Professor</span>
-                                            </div>
-                                        </div>
-                                    </div>
 
-                                    <div class="item">
-                                        <div class="text">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit metus vel leo placerat cursus. Nullam rutrum velit eget quam pretium vehicula. Maecenas enim velit.</p>
-                                        </div>
-                                        <div class="title-testimonial">
-                                            <div class="thumb-title">
-                                                <img src="{% static 'images/member/2.jpg' %}" alt="image">
-                                            </div>
-                                            <div class="post-title">
-                                                <h6 class="title-post">Mr.John</h6>
-                                                <span>Professor</span>
+                                            <div class="title-testimonial">
+                                                <div class="thumb-title">
+                                                    {% image quote.quote.quote_profile_image width-50 %}
+                                                </div>
+                                                <div class="post-title">
+                                                    <h6 class="title-post">{{ quote.quote.quote_speaker }}</h6>
+                                                    <span>{{ quote.quote.quote_speaker_title }}</span>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    {% empty %}
+                                        <h1>No Quotes</h1>
+                                    {% endfor %}
 
-                                    <div class="item">
-                                        <div class="text">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit metus vel leo placerat cursus. Nullam rutrum velit eget quam pretium vehicula. Maecenas enim velit.</p>
-                                        </div>
-                                        <div class="title-testimonial">
-                                            <div class="thumb-title">
-                                                <img src="{% static 'images/member/3.jpg' %}" alt="image">
-                                            </div>
-                                            <div class="post-title">
-                                                <h6 class="title-post">Vicky</h6>
-                                                <span>Professor</span>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>

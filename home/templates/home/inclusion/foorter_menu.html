@@ -1,0 +1,23 @@
+{% load i18n staticfiles wagtailcore_tags wagtailimages_tags %}
+
+{% for menu in menuitems %}
+
+        <div class="col-md-2  widget widget-nav-menu">
+            <div class=" widget-inner">
+                <h2 class="widget-title maincolor1"><a href="{% pageurl menu %}">{{ menu.title }}</a></h2>
+                {% if menu.has_children %}
+                <div class="menu-law-business-container">
+                    <ul id="menu-law-business" class="menu">
+                        {% for child in menu.get_children %}
+                             <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1280">
+                                <a href="{% pageurl child %}">{{ child.title }}</a>
+                             </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+{% endfor %}
+
