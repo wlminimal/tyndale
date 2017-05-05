@@ -10,7 +10,7 @@ import wagtail.wagtailcore.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('wagtailimages', '0019_delete_filter'),
+
         ('home', '0034_auto_20170505_1746'),
     ]
 
