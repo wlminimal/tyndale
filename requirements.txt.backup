@@ -1,0 +1,77 @@
+appdirs==1.4.3
+beautifulsoup4==4.5.3
+Django==1.10.7
+django-modelcluster==3.1
+django-taggit==0.22.0
+django-treebeard==4.1.0
+djangorestframework==3.6.2
+html5lib==0.999999999
+olefile==0.44
+packaging==16.8
+Pillow==4.1.0
+pyparsing==2.2.0
+pytz==2017.2
+requests==2.13.0
+six==1.10.0
+Unidecode==0.4.20
+wagtail==1.10
+webencodings==0.5.1
+Willow==0.4
+wheel==0.29.0
+
+# Configuration
+django-environ==0.4.1
+whitenoise==3.3.0
+
+
+# Forms
+django-braces==1.11.0
+django-crispy-forms==1.6.1
+
+# Models
+django-model-utils==2.6.1
+
+# For user registration, either via email or social
+# Well-built with regular release cycles!
+django-allauth==0.30.0
+
+
+# Python-PostgreSQL Database Adapter
+psycopg2==2.6.2
+
+# Unicode slugification
+awesome-slugify==1.6.5
+
+
+# Redis support
+django-redis==4.7.0
+redis>=2.10.5
+
+django-extensions==1.7.7
+Werkzeug==0.11.15
+
+django-debug-toolbar==1.6
+
+
+
+# For Production
+# WSGI Handler
+# ------------------------------------------------
+gevent==1.2.1
+gunicorn==19.6.0
+
+# Static and Media Storage
+# ------------------------------------------------
+boto==2.46.1
+boto3==1.4.4
+django-storages-redux==1.3.2
+django-storages==1.5.2
+
+
+# Email backends for Mailgun, Postmark, SendGrid and more
+# -------------------------------------------------------
+django-anymail==0.8
+
+# Raven is the Sentry client
+# --------------------------
+raven==6.0.0
