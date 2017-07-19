@@ -16,7 +16,8 @@ urlpatterns = [
     url(r'^documents/', include(wagtaildocs_urls)),
 
     url(r'^search/$', search_views.search, name='search'),
-        # User management
+
+    # User management
     url(r'^users/', include('tyndale.users.urls', namespace='users')),
     url(r'^accounts/', include('allauth.urls')),
 

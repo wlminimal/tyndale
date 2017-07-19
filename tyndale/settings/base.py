@@ -26,7 +26,6 @@ if exists(env_file):
     environ.Env.read_env(str(env_file))
 
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
