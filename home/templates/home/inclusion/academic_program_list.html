@@ -23,7 +23,7 @@
                         {{ child.academic_description | richtext | truncatewords:50 }}
                     </div>
                     <div class="item-meta">
-                        <a class="flat-button" href="#">DETAILS  <i class="fa fa-angle-right"></i></a>
+                        <a class="flat-button" href="{% pageurl child %}">DETAILS  <i class="fa fa-angle-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -31,4 +31,3 @@
     </div><!--/event-listing-->
     {% endwith %}
 {% endfor %}
-
