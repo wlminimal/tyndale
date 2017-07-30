@@ -12,10 +12,10 @@
                         <img src="{{ slider_image_1.url }}" alt="slider-image">
                         <!--
                         <div class="tp-caption sft desc-slide center color-white color-full" data-x="770" data-y="479" data-speed="1000" data-start="1000" data-easing="Power3.easeInOut">
-                            <div class="title main-color-1 font-2">{{ page.slider_banner_title_1 }}</div>
-                            <div class="content">{{ page.slider_banner_description_1 | richtext }}</div>
+                            <div class="title main-color-1 font-2"> </div>
+                            <div class="content">The Fundamental Reformed Theology base school preparing student to serve Christ and His church</div>
                         </div>
-                        -->
+                          -->
                     </li>
 
                     <li data-transition="slidedown" data-slotamount="7" data-masterspeed="1000" data-saveperformance="on">
@@ -274,5 +274,35 @@
             </div>
         </section><!-- /flat-row -->
 
+        <!-- Modal -->
+          <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
 
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Modal Header</h4>
+                </div>
+                <div class="modal-body">
+                  <p>Some text in the modal.</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+{% endblock %}
+
+{% block extra_js %}
+    <script type="text/javascript">
+    $(document).ready(function(){
+
+      $("#myModal").modal('show');
+
+  });
+    </script>
 {% endblock %}
