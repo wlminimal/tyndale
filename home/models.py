@@ -19,6 +19,15 @@ from modelcluster.fields import ParentalKey
 
 
 @register_snippet
+class Popup(models.Model):
+    title = models.CharField(max_length=255)
+    content = RichTextField(default="Some News")
+
+    def __str__(self):
+        return self.title
+
+
+@register_snippet
 class Staff(models.Model):
     profile_image = models.ForeignKey(
         'wagtailimages.Image',
@@ -187,6 +196,13 @@ class HomePage(Page):
         on_delete=models.SET_NULL,
         related_name='+'
     )
+    popup = models.ForeignKey(
+        "home.Popup",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
 
     @property
     def academics(self):
@@ -202,6 +218,8 @@ class HomePage(Page):
         return context
 
     content_panels = Page.content_panels + [
+
+        SnippetChooserPanel('popup'),
         ImageChooserPanel('slider_image_1'),
 
         ImageChooserPanel('slider_image_2'),
@@ -666,32 +684,3 @@ class ContactPage(AbstractEmailForm):
             FieldPanel('subject'),
         ], 'Email'),
     ]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
