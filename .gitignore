@@ -65,3 +65,4 @@ media/
 
 staticfiles/
 tyndale/settings/dev.py
+*.dump
