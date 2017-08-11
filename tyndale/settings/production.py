@@ -60,8 +60,6 @@ MIDDLEWARE = WHITENOISE_MIDDLEWARE + MIDDLEWARE
 RAVEN_MIDDLEWARE = ['raven.contrib.django.raven_compat.middleware.SentryResponseErrorIdMiddleware']
 MIDDLEWARE = RAVEN_MIDDLEWARE + MIDDLEWARE
 
-
-
 SECURE_HSTS_SECONDS = 60
 SECURE_HSTS_INCLUDE_SUBDOMAINS = env.bool(
     'DJANGO_SECURE_HSTS_INCLUDE_SUBDOMAINS', default=True)
@@ -90,7 +88,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # EMAIL
 # ------------------------------------------------------------------------------
 DEFAULT_FROM_EMAIL = env('DJANGO_DEFAULT_FROM_EMAIL',
-                         default='tiu <noreply@tyndaleinternationaluniversity.org>')
+                         default='tiu <info@tyndaleinternationaluniversity.org>')
 EMAIL_SUBJECT_PREFIX = env('DJANGO_EMAIL_SUBJECT_PREFIX', default='[Tyndale]')
 SERVER_EMAIL = env('DJANGO_SERVER_EMAIL', default=DEFAULT_FROM_EMAIL)
 
@@ -100,7 +98,15 @@ ANYMAIL = {
     'MAILGUN_API_KEY': env('MAILGUN_API_KEY'),
     'MAILGUN_SENDER_DOMAIN': env('MAILGUN_DOMAIN')
 }
-EMAIL_BACKEND = 'anymail.backends.mailgun.MailgunBackend'
+# EMAIL_BACKEND = 'anymail.backends.mailgun.MailgunBackend'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = env('EMAIL_HOST')
+EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = 587
+DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL')
 
 
 # Sentry Configuration
