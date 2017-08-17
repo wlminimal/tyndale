@@ -281,3 +281,9 @@
 .modal-title {
   text-align: center;
 }
+
+@media (max-width: 1000px){
+  .hide-sidebar {
+    visibility: hidden;
+  }
+}
