@@ -570,7 +570,7 @@ class CourseDetailPage(Page):
 
 
 class AcademicProgramListPage(Page):
-    pass
+    subpage_types = ['home.AcademicProgramDetailPage']
 
 
 class AcademicProgramDetailPage(Page):
@@ -601,7 +601,8 @@ class AcademicProgramDetailPage(Page):
 
 
 class FacultyPage(Page):
-    pass
+
+    subpage_types = ['home.FacultyDetailPage']
 
 
 class FacultyDetailPage(Page):
