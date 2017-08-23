@@ -302,3 +302,10 @@
     font-weight: 200;
     color: #222;
 }
+
+.pagination {
+  font-size: 15px;
+}
+.step-links {
+  text-align: center;
+}

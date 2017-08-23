@@ -702,7 +702,18 @@ class NewsPage(Page):
         return featured_news
 
     def get_context(self, request, *args, **kwargs):
+
         news = self.news
+        paginator = Paginator(news, 10)
+        page = request.GET.get('page')
+
+        try:
+            news = paginator.page(page)
+        except PageNotAnInteger:
+            news = paginator.page(1)
+        except EmptyPage:
+            news = paginator.page(paginator.num_pages)
+
         featured_news = self.featured_news
         context = super(NewsPage, self).get_context(request, *args, **kwargs)
         context['news'] = news
