@@ -287,3 +287,18 @@
     visibility: hidden;
   }
 }
+
+
+.news-title {
+  font-size: 18px;
+}
+#news-detail-title {
+  font-size: 40px;
+}
+
+.jumbotron p {
+    margin-bottom: 15px;
+    font-size: 21px;
+    font-weight: 200;
+    color: #222;
+}

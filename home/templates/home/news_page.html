@@ -1,0 +1,37 @@
+{% extends "base-column.html" %}
+{% load staticfiles i18n wagtailcore_tags wagtailimages_tags tyndale_tags %}
+
+{% block body_class %}{% endblock %}
+
+    {% block column-9-content %}
+        <article class="post">
+            <div class="entry-wrapper">
+                <div class="jumbotron">
+                  <h1 class="display-3">{{ page.greeting }}</h1>
+                  <hr class="my-4">
+                  <p class="lead">{{ page.description | richtext }}</p>
+
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-12">
+                    <ul class="list-group">
+                      {% for new in news %}
+                        <li class="list-group-item">
+                          <h2 class="news-title">
+                            <a href="{% pageurl new %}">{{ new.title }} </a><span class="pull-right"><small>{{ new.created_at |date:"SHORT_DATE_FORMAT" }}</small></span>
+                          </h2>
+                        </li>
+                      {% endfor %}
+                    </ul>
+
+                  </div>
+
+                </div>
+
+                <hr class="my-4">
+
+
+            </div>
+        </article>
+    {% endblock %}

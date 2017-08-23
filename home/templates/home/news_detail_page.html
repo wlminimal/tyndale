@@ -1,0 +1,19 @@
+{% extends "base-column.html" %}
+{% load staticfiles i18n wagtailcore_tags wagtailimages_tags tyndale_tags %}
+
+{% block body_class %}{% endblock %}
+
+    {% block column-9-content %}
+        <article class="post">
+            <div class="entry-wrapper">
+                <div class="jumbotron">
+                  <h1 id="news-detail-title">{{ page.news_title }}</h1>
+                  <hr class="my-4">
+                  <p class="lead">{{ page.news_content | richtext }}</p>
+                </div>
+                <hr class="my-4">
+
+
+            </div>
+        </article>
+    {% endblock %}

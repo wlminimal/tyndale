@@ -523,7 +523,7 @@ class CourseDetailPage(Page):
     course_name = models.TextField(default="Ancient Church History")
     course_description = RichTextField(default="Description of course")
     professor_name = models.CharField(max_length=70, default="Professor name")
-    video_url = models.URLField(default="http://www.youtube.com")
+    video_url = models.CharField(max_length=255, default="PMJFfMWgyZI")
     upload_date = models.DateField(default=datetime.date.today)
 
     professor = models.ForeignKey(
@@ -684,4 +684,48 @@ class ContactPage(AbstractEmailForm):
             ]),
             FieldPanel('subject'),
         ], 'Email'),
+    ]
+
+
+class NewsPage(Page):
+    greeting = models.TextField(default="틴데일 신학교 게시판에 오신걸 환영합니다.")
+    description = RichTextField(default="이곳에서 틴데일 신학교에 대한 새로운 소식을 읽으시길 바랍니다.")
+
+    @property
+    def news(self):
+        news = NewsDetailPage.objects.filter(featured__exact=False).order_by('-created_at')
+        return news
+
+    @property
+    def featured_news(self):
+        featured_news = NewsDetailPage.objects.filter(featured__exact=True).order_by('-created_at')
+        return featured_news
+
+    def get_context(self, request, *args, **kwargs):
+        news = self.news
+        featured_news = self.featured_news
+        context = super(NewsPage, self).get_context(request, *args, **kwargs)
+        context['news'] = news
+        context['featured_news'] = featured_news
+
+        return context
+
+    subpage_types = ['home.NewsDetailPage']
+
+    content_panels = Page.content_panels + [
+        FieldPanel('greeting'),
+        FieldPanel('description'),
+    ]
+
+
+class NewsDetailPage(Page):
+    news_title = models.CharField(max_length=255, default="News Title")
+    news_content = RichTextField(default="News Content")
+    featured = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    content_panels = Page.content_panels + [
+        FieldPanel('news_title'),
+        FieldPanel('featured'),
+        FieldPanel('news_content')
     ]
