@@ -309,3 +309,14 @@
 .step-links {
   text-align: center;
 }
+.project-listing .project-portfolio.v1 .item .item-content {
+  padding: 20px 15px;
+}
+
+.project-portfolio.v1 .item .item-content .item-title, .member-single-post .content-pad .item-content .item-title {
+  font-size: 17px;
+  font-weight: 400;
+  color: #343434;
+  margin-bottom: 10px;
+  line-height: 1.25;
+}
