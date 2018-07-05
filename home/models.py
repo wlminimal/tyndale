@@ -4,16 +4,19 @@ from django.db import models
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 import datetime
 
-from wagtail.wagtailcore.models import Page, Orderable
-from wagtail.wagtailcore.fields import RichTextField
-from wagtail.wagtailadmin.edit_handlers import FieldPanel, FieldRowPanel, InlinePanel, MultiFieldPanel, PageChooserPanel
-from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
-from wagtail.wagtailsnippets.edit_handlers import SnippetChooserPanel
-from wagtail.wagtailsnippets.models import register_snippet
-from wagtail.wagtailforms.models import AbstractEmailForm, AbstractFormField
-from wagtail.wagtailforms.edit_handlers import FormSubmissionsPanel
-from wagtail.wagtailcore.blocks import TextBlock, CharBlock, RichTextBlock, StreamBlock
-from wagtail.wagtailimages.blocks import ImageChooserBlock
+from wagtail.core.models import Page, Orderable
+from wagtail.core.fields import RichTextField
+from wagtail.admin.edit_handlers import FieldPanel, FieldRowPanel, InlinePanel, MultiFieldPanel, PageChooserPanel
+from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.snippets.edit_handlers import SnippetChooserPanel
+from wagtail.snippets.models import register_snippet
+# from wagtail.contrib.forms.models import AbstractEmailForm, AbstractFormField
+# from wagtail.contrib.forms.edit_handlers import FormSubmissionsPanel
+
+from wagtail.contrib.forms.models import AbstractEmailForm, AbstractFormField
+from wagtail.contrib.forms.edit_handlers import FormSubmissionsPanel
+from wagtail.core.blocks import TextBlock, CharBlock, RichTextBlock, StreamBlock
+from wagtail.images.blocks import ImageChooserBlock
 
 from modelcluster.fields import ParentalKey
 
@@ -65,7 +68,7 @@ class Quote(models.Model):
 
 class HomepageQuotes(Orderable, models.Model):
     page = ParentalKey('home.HomePage', related_name='home_quote')
-    quote = models.ForeignKey('home.Quote', related_name='+')
+    quote = models.ForeignKey('home.Quote', null=True, related_name='+', on_delete=models.SET_NULL)
 
     class Meta:
         verbose_name = "Quote for Homepage"
@@ -98,7 +101,7 @@ class SliderMessage(models.Model):
 
 class HomepageSliderMessages(Orderable, models.Model):
     page = ParentalKey('home.HomePage', related_name='slider_message')
-    message = models.ForeignKey('home.SliderMessage', related_name='+')
+    message = models.ForeignKey('home.SliderMessage', null=True, related_name='+', on_delete=models.SET_NULL)
 
     class Meta:
         verbose_name = "Message for slider"
@@ -505,7 +508,8 @@ class Professor(models.Model):
         "wagtailcore.Page",
         null=True,
         blank=True,
-        related_name='+'
+        related_name='+',
+        on_delete=models.SET_NULL
     )
 
     @property

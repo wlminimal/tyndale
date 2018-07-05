@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 
 from django.db import migrations, models
 import django.db.models.deletion
-import wagtail.wagtailcore.fields
+import wagtail.core.fields
 
 
 class Migration(migrations.Migration):
@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
             name='Quote',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('quote_message', wagtail.wagtailcore.fields.RichTextField(default='quote_message')),
+                ('quote_message', wagtail.core.fields.RichTextField(default='quote_message')),
                 ('quote_speaker', models.CharField(default='Taehwan Kim', max_length=50)),
                 ('quote_speaker_title', models.CharField(default='Senior Pastor', max_length=100)),
                 ('quote_profile_image', models.ForeignKey(help_text='50x50 pixels image', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='wagtailimages.Image')),

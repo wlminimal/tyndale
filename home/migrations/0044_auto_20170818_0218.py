@@ -3,7 +3,7 @@
 from __future__ import unicode_literals
 
 from django.db import migrations, models
-import wagtail.wagtailcore.fields
+import wagtail.core.fields
 
 
 class Migration(migrations.Migration):
@@ -20,7 +20,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='newspage',
             name='description',
-            field=wagtail.wagtailcore.fields.RichTextField(default='이곳에서 틴데일 신학교에 대한 새로운 소식을 읽으시길 바랍니다.'),
+            field=wagtail.core.fields.RichTextField(default='이곳에서 틴데일 신학교에 대한 새로운 소식을 읽으시길 바랍니다.'),
         ),
         migrations.AddField(
             model_name='newspage',

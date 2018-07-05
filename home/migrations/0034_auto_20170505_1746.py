@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 
 from django.db import migrations, models
 import django.db.models.deletion
-import wagtail.wagtailcore.fields
+import wagtail.core.fields
 
 
 class Migration(migrations.Migration):
@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='homepage',
             name='quote_message',
-            field=wagtail.wagtailcore.fields.RichTextField(default='quote_message'),
+            field=wagtail.core.fields.RichTextField(default='quote_message'),
         ),
         migrations.AddField(
             model_name='homepage',

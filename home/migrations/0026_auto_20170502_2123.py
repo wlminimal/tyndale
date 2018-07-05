@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 import datetime
 from django.db import migrations, models
 import django.db.models.deletion
-import wagtail.wagtailcore.fields
+import wagtail.core.fields
 
 
 class Migration(migrations.Migration):
@@ -27,7 +27,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='coursedetailpage',
             name='course_description',
-            field=wagtail.wagtailcore.fields.RichTextField(default='Description of course'),
+            field=wagtail.core.fields.RichTextField(default='Description of course'),
         ),
         migrations.AddField(
             model_name='coursedetailpage',

@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 
 from django.db import migrations, models
 import django.db.models.deletion
-import wagtail.wagtailcore.fields
+import wagtail.core.fields
 
 
 class Migration(migrations.Migration):
@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
                 ('name', models.CharField(default='Name', max_length=100)),
-                ('spec', wagtail.wagtailcore.fields.RichTextField(default='Spec of professor')),
+                ('spec', wagtail.core.fields.RichTextField(default='Spec of professor')),
                 ('class_name', models.TextField(default='class name')),
                 ('order_number', models.IntegerField(default=10)),
                 ('profile_image', models.ForeignKey(help_text='360x360 pixels', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='wagtailimages.Image')),

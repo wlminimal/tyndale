@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 
 from django.db import migrations, models
 import django.db.models.deletion
-import wagtail.wagtailcore.fields
+import wagtail.core.fields
 
 
 class Migration(migrations.Migration):
@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='homepage',
             name='about_tiu_description',
-            field=wagtail.wagtailcore.fields.RichTextField(default='Description of TIU'),
+            field=wagtail.core.fields.RichTextField(default='Description of TIU'),
         ),
         migrations.AddField(
             model_name='homepage',
@@ -28,12 +28,12 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='homepage',
             name='slider_banner_description_1',
-            field=wagtail.wagtailcore.fields.RichTextField(default='description'),
+            field=wagtail.core.fields.RichTextField(default='description'),
         ),
         migrations.AddField(
             model_name='homepage',
             name='slider_banner_description_2',
-            field=wagtail.wagtailcore.fields.RichTextField(default='description'),
+            field=wagtail.core.fields.RichTextField(default='description'),
         ),
         migrations.AddField(
             model_name='homepage',
@@ -58,7 +58,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='homepage',
             name='state_faith_description',
-            field=wagtail.wagtailcore.fields.RichTextField(default='Description of Faith'),
+            field=wagtail.core.fields.RichTextField(default='Description of Faith'),
         ),
         migrations.AddField(
             model_name='homepage',
@@ -68,7 +68,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='homepage',
             name='state_mission_description',
-            field=wagtail.wagtailcore.fields.RichTextField(default='Description of mission'),
+            field=wagtail.core.fields.RichTextField(default='Description of mission'),
         ),
         migrations.AddField(
             model_name='homepage',

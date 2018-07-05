@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 
 from django.db import migrations, models
 import django.db.models.deletion
-import wagtail.wagtailcore.fields
+import wagtail.core.fields
 
 
 class Migration(migrations.Migration):
@@ -18,22 +18,22 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='homepage',
             name='overlay_banner_description_1',
-            field=wagtail.wagtailcore.fields.RichTextField(default='Description'),
+            field=wagtail.core.fields.RichTextField(default='Description'),
         ),
         migrations.AddField(
             model_name='homepage',
             name='overlay_banner_description_2',
-            field=wagtail.wagtailcore.fields.RichTextField(default='Description'),
+            field=wagtail.core.fields.RichTextField(default='Description'),
         ),
         migrations.AddField(
             model_name='homepage',
             name='overlay_banner_description_3',
-            field=wagtail.wagtailcore.fields.RichTextField(default='Description'),
+            field=wagtail.core.fields.RichTextField(default='Description'),
         ),
         migrations.AddField(
             model_name='homepage',
             name='overlay_banner_description_4',
-            field=wagtail.wagtailcore.fields.RichTextField(default='Description'),
+            field=wagtail.core.fields.RichTextField(default='Description'),
         ),
         migrations.AddField(
             model_name='homepage',

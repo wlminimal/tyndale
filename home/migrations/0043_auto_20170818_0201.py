@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 from django.db import migrations, models
 import django.db.models.deletion
 import django.utils.timezone
-import wagtail.wagtailcore.fields
+import wagtail.core.fields
 
 
 class Migration(migrations.Migration):
@@ -33,7 +33,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='newsdetailpage',
             name='news_content',
-            field=wagtail.wagtailcore.fields.RichTextField(default='News Content'),
+            field=wagtail.core.fields.RichTextField(default='News Content'),
         ),
         migrations.AddField(
             model_name='newsdetailpage',

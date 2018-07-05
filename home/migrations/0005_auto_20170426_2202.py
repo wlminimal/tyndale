@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 
 from django.db import migrations, models
 import django.db.models.deletion
-import wagtail.wagtailcore.fields
+import wagtail.core.fields
 
 
 class Migration(migrations.Migration):
@@ -23,7 +23,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='homepage',
             name='chairman_message',
-            field=wagtail.wagtailcore.fields.RichTextField(default='Message'),
+            field=wagtail.core.fields.RichTextField(default='Message'),
         ),
         migrations.AddField(
             model_name='homepage',
@@ -38,7 +38,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='homepage',
             name='president_message',
-            field=wagtail.wagtailcore.fields.RichTextField(default='Description'),
+            field=wagtail.core.fields.RichTextField(default='Description'),
         ),
         migrations.AddField(
             model_name='homepage',
@@ -53,7 +53,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='homepage',
             name='tyndale_message',
-            field=wagtail.wagtailcore.fields.RichTextField(default='Message'),
+            field=wagtail.core.fields.RichTextField(default='Message'),
         ),
         migrations.AddField(
             model_name='homepage',
@@ -68,7 +68,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='homepage',
             name='yala_message',
-            field=wagtail.wagtailcore.fields.RichTextField(default='message'),
+            field=wagtail.core.fields.RichTextField(default='message'),
         ),
         migrations.AddField(
             model_name='homepage',
