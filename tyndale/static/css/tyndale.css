@@ -320,3 +320,24 @@
   margin-bottom: 10px;
   line-height: 1.25;
 }
+
+/* Contact Page */
+
+
+
+.post-contact div.contact-wrapper p.contact-info {
+  font-size: 14px;
+}
+
+.post-contact p.contact-title {
+  font-size: 20px;
+}
+
+.post-contact div.rich-text p {
+  font-size: 14px;
+}
+
+div.contact-wrapper {
+  background-color: #e5e5e5;
+  padding: 30px;
+}

@@ -672,8 +672,20 @@ class FormField(AbstractFormField):
 
 
 class ContactPage(AbstractEmailForm):
+    contact_title = models.TextField(default="Tyndale International University")
+    address = models.TextField(default="4270 W. 6th St.  Los Angeles,  California  90020")
+    phone_number = models.TextField(default="(213) 595-3181")
+    website = models.TextField(default="www.tyndaleinternationaluniversity.org / www.yalamission.org")
+    emails = models.TextField(default="tiu4270@gmail.com / info.tyndaleinternationaluniversity@gmail.com")
+    office_hours = RichTextField(default="Office Hours")
     thank_you_text = RichTextField(default="Thank you for contacting us. We will get back to you soon.")
     content_panels = AbstractEmailForm.content_panels + [
+        FieldPanel('contact_title'),
+        FieldPanel('address'),
+        FieldPanel('phone_number'),
+        FieldPanel('website'),
+        FieldPanel('emails'),
+        FieldPanel('office_hours'),
         FormSubmissionsPanel(),
         InlinePanel('form_fields', label='Contact Form Fields'),
         FieldPanel('thank_you_text', classname='full'),
