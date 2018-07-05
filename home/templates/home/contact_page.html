@@ -11,6 +11,28 @@
                 <div class="post-contact">
                     <div class="row">
                         <div class="col-md-6">
+                            <div class="contact-wrapper">
+                                <p class="contact-title">{{ page.contact_title }}</p>
+                                <br>
+                                <p class="contact-info">{{ page.address }}</p>
+                                <br>
+                                <p class="contact-info">{{ page.website }}</p>
+                                <br>
+                                <p class="contact-info">{{ page.emails }}</p>
+                            </div>
+                            
+                        </div>
+                        <div class="col-md-6">
+                            <div class="contact-wrapper">
+                                <p class="contact-title">Office Hours</p>
+                                <br>
+                                <p>{{ page.office_hours | richtext }}</p>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
                             <div class="contact-form">
                                 <div class="line-box"></div>
                                 <form action="{% pageurl self %}" method="post" id="contactform" class="comment-form" novalidate="">
