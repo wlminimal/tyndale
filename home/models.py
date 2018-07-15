@@ -209,7 +209,7 @@ class HomePage(Page):
 
     @property
     def academics(self):
-        academics = AcademicProgramDetailPage.objects.all().order_by('-order_number')[:6]
+        academics = AcademicProgramDetailPage.objects.all().live().order_by('order_number')[:6]
 
         return academics
 

@@ -82,8 +82,8 @@ def display_staffs(context):
 @register.inclusion_tag("home/inclusion/academic_program_list.html", takes_context=True)
 def display_academic_list(context):
     current_page = context['self']
-    children = current_page.get_children().live()
-
+    #children = current_page.get_children().live()
+    children = AcademicProgramDetailPage.objects.all().live().order_by('order_number')
     # TODO
     # order by number
 

@@ -327,17 +327,23 @@
 
 .post-contact div.contact-wrapper p.contact-info {
   font-size: 14px;
+  color: #FFFFFF;
+  line-height: 4px;
 }
 
 .post-contact p.contact-title {
   font-size: 20px;
+  color: #FFFFFF;
+  text-transform: uppercase;
 }
 
 .post-contact div.rich-text p {
   font-size: 14px;
+  color: #FFFFFF;
+  line-height: 17px;
 }
 
 div.contact-wrapper {
-  background-color: #e5e5e5;
+  background-color: #179bd7;
   padding: 30px;
 }
