@@ -347,3 +347,41 @@ div.contact-wrapper {
   background-color: #179bd7;
   padding: 30px;
 }
+
+.faculty-flexbox {
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+}
+
+.faculty-flexitem {
+  flex-basis: 33%;
+}
+
+.faculty-flexitem .thumb-item {
+  padding: 0 10px;
+  margin-bottom: 40px;
+  float: left;
+}
+
+.faculty-flexitem .item-content {
+  padding: 20px 15px;
+  background-color: #f6f6f6;
+  border-top: solid 1px #eaeaea;
+} 
+
+.faculty-flexitem .item-title {
+  font-size: 17px;
+  font-weight: 400;
+  color: #343434;
+  margin-bottom: 10px;
+  line-height: 1.25;
+}
+
+.faculty-flexitem .small-text {
+  font-size: 10px;
+  color: #343434;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  line-height: 1.25;
+}

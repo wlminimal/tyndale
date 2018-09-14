@@ -96,7 +96,8 @@ def display_academic_list(context):
 @register.inclusion_tag("home/inclusion/faculty.html", takes_context=True)
 def display_faculty(context):
     current_page = context['self']
-    children = FacultyDetailPage.objects.all().live().order_by('order_number')
+    children = FacultyDetailPage.objects.all().live().order_by('order_number', 'name')
+
 
     return {
         "children": children,

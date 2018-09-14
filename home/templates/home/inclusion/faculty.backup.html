@@ -1,0 +1,23 @@
+{% load tyndale_tags wagtailcore_tags wagtailimages_tags staticfiles %}
+
+{% for child in children %}
+    {% with child=child.specific %}
+        <div class="item">
+            <div class="thumb-item">
+                <div class="item-thumbnail">
+                    {% image child.profile_image width-360 as professor_image %}
+                    <img src="{{ professor_image.url }}" alt="image">
+                </div><!-- /item-thumbnail -->
+
+                <div class="item-content">
+                    <h3 class="item-title">
+                        {{ child.name }}
+                    </h3>
+                    <h4 class="small-text">{{ child.class_name }}</h4>
+                    <a href="{% pageurl child %}">Read more</a>
+                </div><!-- /item-content -->
+            </div><!-- /thumb-item -->
+        </div><!-- /item -->
+    {% endwith %}
+{% endfor %}
+
