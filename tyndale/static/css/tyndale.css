@@ -290,10 +290,10 @@
 
 
 .news-title {
-  font-size: 18px;
+  font-size: 14px;
 }
 #news-detail-title {
-  font-size: 40px;
+  font-size: 25px;
 }
 
 .jumbotron p {
@@ -368,7 +368,7 @@ div.contact-wrapper {
   padding: 20px 15px;
   background-color: #f6f6f6;
   border-top: solid 1px #eaeaea;
-} 
+}
 
 .faculty-flexitem .item-title {
   font-size: 17px;
@@ -384,4 +384,8 @@ div.contact-wrapper {
   text-transform: uppercase;
   margin-bottom: 10px;
   line-height: 1.25;
+}
+
+#news-header {
+  font-size: 43px;
 }
